@@ -1,732 +1,391 @@
-
-OF Cancha
-/
-Hi, where were we regarding this?
-
-7:17 PM
-Based on what I have saved, here's where things stand with the Ocean Front court reservation app:
-
-✅ Completed
-
-Fully functional web app with all core features (court selection, 2-hour time slots 7am–12am, apartment verification, admin panel)
-"Mis Reservas" tab for viewing/canceling reservations
-Admin panel with reservation management and apartment unit approval
-Polished UI (dark navy, gold accents, DM Sans font, oval "O" logo)
-🔄 In Progress — Firebase Setup You were in the middle of setting up Firebase to replace the in-memory storage with persistent data. The plan was:
-
-Create a free Firebase project named oceanfront-reservas
-Set up Firestore in test mode, region us-east1
-Share the Firebase config with me so I can generate the final deployment-ready files
-⏭️ Next Steps (after Firebase)
-
-Generate final files with Firestore integration
-Deploy to Vercel (you already have an account)
-Configure as a PWA for iPhone "Add to Home Screen" support
-So the question is: did you get a chance to create the Firebase project? If so, share the Firebase config snippet and we can get the final files generated!
-
-I used github last time
-
-7:20 PM
-Got it! So the deployment plan was Vercel pulling from a GitHub repo rather than a direct Vercel deploy.
-
-To pick up where we left off, a few quick questions:
-
-Did you finish the Firebase setup? (project created, Firestore enabled, config snippet ready?)
-Do you have a GitHub repo already created for this project, or do we still need to set that up?
-Once I know where you are, we can get right back into it!
-
-no
-
-7:21 PM
-No worries! So to clarify — when you say "no," do you mean:
-
-You haven't set up Firebase yet, or
-You didn't use GitHub (and I'm misremembering)?
-Just want to make sure I have the right picture before we dive back in!
-
-i use github for the other app, havent done anything else for this one
-
-7:21 PM
-Got it, thanks for clarifying! So for the Ocean Front app, the last thing we did was build the fully functional in-memory version. Nothing has been done yet on Firebase, GitHub, or deployment.
-
-So the next steps in order would be:
-
-Firebase — Create the oceanfront-reservas project and set up Firestore
-Generate final files — I'll update the app code with Firebase integration
-GitHub — Push the files to a new repo
-Vercel — Connect the repo and deploy
-PWA — Configure for iPhone home screen install
-Want to start with Firebase? If so, go to console.firebase.google.com, create a new project called oceanfront-reservas, and once you've enabled Firestore (test mode, us-east1) and registered a web app, paste the config snippet here and we'll take it from there!
-
-how? also remember I want people to be able to download the app in the appstore
-7:22 PM
-Great questions! Let me address both:
-
-On the App Store 🍎
-
-A PWA (Progressive Web App) cannot be published to the Apple App Store — that requires a native app. Your options are:
-
-PWA via Safari — Users can "Add to Home Screen" from Safari. It looks and feels like an app, but it's not in the App Store. This is the free/easy route.
-App Store — You'd need to wrap the web app using something like Capacitor or use a service like PWABuilder, then submit to Apple. This requires an Apple Developer account ($99/year) and Apple's approval process.
-Which do you prefer? The PWA route is much simpler and free. The App Store route takes more work and has a cost.
-
-On Firebase Setup 🔥
-
-Here's step by step:
-
-Go to console.firebase.google.com
-Click "Add project"
-Name it oceanfront-reservas → click Continue
-Disable Google Analytics (not needed) → click Create project
-Once created, click the web icon (</>) to register a web app
-Give it a nickname (e.g. oceanfront-web) → click Register app
-Copy the config snippet that appears (looks like const firebaseConfig = { ... }) and paste it here
-Then go to Firestore Database → Create database → Test mode → region us-east1
-Let me know when you've done that or if you get stuck on any step!
-
-do it in a way that after we can make it an app. See?
-
-7:22 PM
-Got it! So we'll build it the right way from the start — using Capacitor to wrap the web app, which lets us:
-
-Deploy as a web app (Vercel)
-Publish to the Apple App Store
-Publish to the Google Play Store too if you want
-The stack will be:
-
-Web app (HTML/CSS/JS) — the core
-Firebase/Firestore — persistent database
-Capacitor — wraps it into a native app for App Store submission
-Vercel — hosts the web version
-This doesn't change the Firebase setup steps at all. So go ahead and follow the steps I listed and paste the config snippet here once you have it.
-
-While you do that — do you have a Mac? Building for the iOS App Store requires Xcode, which only runs on Mac. If you don't have one, there are workarounds we can discuss.
-
-I by mistake named it OF Canchas
-
-7:26 PM
-No problem at all! The project name in Firebase is just a display name — it doesn't affect functionality. We can either:
-
-Leave it as "OF Canchas" — totally fine, it won't affect anything
-Rename it — go to Firebase console → Project Settings → scroll down to "Your project" → edit the name
-Either way works! Did you get to the point where you have the config snippet to paste here? That's the important part. 🙂
-
-did not rename it. Now it is telling me welcome to your firebase project. Now what?
-
-7:29 PM
-You're in! Now follow these steps:
-
-1. Register a Web App
-
-Click the </> (web) icon on the welcome screen
-Nickname: oceanfront-web
-Leave "Firebase Hosting" unchecked (we're using Vercel)
-Click Register app
-Copy the entire firebaseConfig snippet and paste it here
-2. Set up Firestore
-
-On the left sidebar click Build → Firestore Database
-Click Create database
-Select Start in test mode → Next
-Region: us-east1 → Click Enable
-Do step 1 first and paste me the config, then move on to step 2!
-
-dont see that. it is giving me the option to add app o rell about the app, or gemini
-7:30 PM
-On the welcome screen, look for a row of icons to add a platform. You should see icons for:
-
-🍎 iOS
-🤖 Android
-</> Web
-Unity
-Flutter
-Can you see those? If not, try scrolling down on that welcome page. Alternatively, click the gear icon ⚙️ (top left, next to "Project Overview") → Project settings → then look for the "Your apps" section at the bottom and click the </> web icon there.
-
-Hi, this is Ariel Ashouri Levy, Im live in Panama
-
-7:33 PM
-Hi Ariel! Nice to meet you properly. 😊
-
-Now, back to Firebase — were you able to find the </> web icon to register your app? Try the gear icon route I mentioned:
-
-⚙️ Project Settings → "Your apps" section → </> web icon
-
-// Import the functions you need from the SDKs you needimport { initializeApp } from "firebase/app";import { getAnalytics } from "firebase/analytics";// TODO: Add SDKs for Firebase products that you want to use// https://firebase.google.com/docs/web/setup#available-libraries// Your web app's Firebase configuration// For Firebase JS SDK v7.20.0 and later, measurementId is optionalconst firebaseConfig = {  apiKey: "AIzaSyDdcqtmAllOV7iv0r5V3YJdcEqD4a_mfUw",  authDomain: "of-canchas.firebaseapp.com",  projectId: "of-canchas",  storageBucket: "of-canchas.firebasestorage.app",  messagingSenderId: "856514470352",  appId: "1:856514470352:web:f4ebb5ced67acc887219d5",  measurementId: "G-YKY6BXCHGG"};// Initialize Firebaseconst app = initializeApp(firebaseConfig);const analytics = getAnalytics(app);
-
-Show more
-7:33 PM
-Got it, I have your Firebase config! Now go do step 2 if you haven't yet:
-
-Set up Firestore:
-
-Left sidebar → Build → Firestore Database
-Click Create database
-Select Start in test mode → Next
-Region: us-east1 → Click Enable
-Let me know once that's done and I'll generate all the final files with Firebase fully integrated! 🔥
-
-continue to console?
-
-7:33 PM
-Yes! Click "Continue to console" — that's perfect. You're done with the Firebase setup! 🎉
-
-Now just confirm for me: did you also complete the Firestore Database step (Build → Firestore Database → Create database → test mode → us-east1)?
-
-no didnt see that
-
-7:33 PM
-No worries! Do it now:
-
-On the left sidebar, click Build (it may have a "►" arrow to expand it)
-Click Firestore Database
-Click Create database
-Select Start in test mode → click Next
-Region: select us-east1 (South Carolina) → click Enable
-Let me know when you see the Firestore dashboard (it looks like an empty table)!
-
-nop none of that
-
-7:35 PM
-What do you see on the left sidebar? Can you describe it or list the options you see there?
-
-products, project overview, settings, data connect, phone verification, databaeses and storage, security, ai services...
-
-7:35 PM
-Click on "Databases and storage" — Firestore should be in there!
-
-ok, yes clicked it. now what
-
-7:36 PM
-You should see a Firestore Database option. Click on it, then:
-
-Click Create database
-Select Start in test mode → Next
-Region: us-east1 (South Carolina) → Enable
-What do you see on that screen?
-
-the id and location says it is default
-
-7:37 PM
-That's fine! Just make sure the location shows us-east1 and click Create (or Enable).
-
-What options do you see for location — can you change it or is it locked?
-
-does not say
-
-7:37 PM
-That's okay, don't worry about it — the default location Firebase assigns is fine for this app. Just click Create or Enable and let me know when you see the Firestore dashboard (an empty database screen)!
-
-start in test mode or production mode?
-
-7:37 PM
-Choose Start in test mode → click Next → then Create!
-
-ok now what?
-
-7:37 PM
-You're all set with Firebase! 🎉
-
-Now I'll generate all the app files with Firebase fully integrated. Give me a moment to put everything together...
-
-
-Reading frontend design skill
-Reading frontend design skill
-Now let me build the complete file structure for the app:
-
-
-Created 7 files, ran a command
-Created 7 files, ran a command
-Now let me generate the app icons:
-
-
-Ran 2 commands, read a file
-Ran 2 commands, read a file
-All files are ready! 🎉 Here's what was generated:
-
-File structure:
-
-oceanfront/
-├── index.html          ← Main app
-├── manifest.json       ← PWA config
-├── sw.js               ← Service worker (offline support)
-├── vercel.json         ← Vercel routing config
-├── css/styles.css      ← All styles
-├── js/
-│   ├── firebase-config.js  ← Your Firebase connection
-│   └── app.js              ← Full app with Firestore
-└── icons/
-    ├── icon-192.png    ← App icon
-    └── icon-512.png    ← App icon (large)
-Next step — put it on GitHub:
-
-Go to github.com → New repository → name it oceanfront-canchas → Public → Create
-Download these files and upload them to the repo (or use GitHub Desktop)
-Then connect it to Vercel
-Do you want me to walk you through the GitHub part step by step?
-
-
-Index
-Code · HTML 
-
-App
-JS 
-
-Firebase config
-JS 
-
-Styles
-Code · CSS 
-
-Sw
-JS 
-
-Manifest
-Code · JSON 
-
-Vercel
-Code · JSON 
-donwloaded it all, forgot how to add the items
-
-7:45 PM
-No problem! Here's how to add the files to GitHub:
-
-Go to github.com and create a new repository called oceanfront-canchas → click Create repository
-On the next screen, click "uploading an existing file" (there's a link in the middle of the page)
-Drag and drop the entire oceanfront folder contents into the upload area
-Scroll down → click "Commit changes"
-That's it! Let me know once it's done and we'll connect it to Vercel. 🚀
-
-how do i create another repository?
-
-7:47 PM
-On GitHub:
-
-Click the "+" icon at the top right corner
-Click "New repository"
-Name it oceanfront-canchas
-Leave it Public
-Click "Create repository"
-That's it! Let me know when you see the new empty repo page.
-
-done
-
-7:48 PM
-Now upload the files:
-
-On the empty repo page, click "uploading an existing file" (it's a link in the middle of the page)
-Drag and drop all the files/folders from the oceanfront folder you downloaded
-Scroll down → click "Commit changes"
-Let me know when that's done!
-
-where do i find it?
-
-7:49 PM
-Look for this text on the page:
-
-"…or upload an existing file" — it's a clickable link right in the middle of the empty repo page, usually in a line that says something like "get started by creating a new file or uploading an existing file."
-
-Can you see that text on the page?
-
-no
-
-7:50 PM
-What do you see on the page? Is there a big green button or any buttons/options visible?
-
-im in the project but dont know where to add the files
-
-7:51 PM
-Look for a button that says "Add file" — it should be near the top right of the page. Click it, then select "Upload files".
-
-Can you see that?
-
-dont know if im in the correct place
-
-7:52 PM
-Can you share what you see? For example:
-
-What's the URL at the top of your browser?
-Do you see your repository name oceanfront-canchas anywhere on the page?
-under project
-
-7:52 PM
-Hmm, it sounds like you might be in GitHub Projects (which is a task management feature) instead of your actual repository.
-
-Try this:
-
-Click on your profile picture (top right)
-Click "Your repositories"
-Find and click oceanfront-canchas
-Are you able to find it there?
-
-it says it exists, when i try to create it new, but i dont see it on the list
-
-7:53 PM
-Try this:
-
-Go directly to: github.com/YOUR-USERNAME/oceanfront-canchas (replace YOUR-USERNAME with your GitHub username)
-What's your GitHub username?
-
-im here
-
-7:54 PM
-Now look for the "Add file" button — it should be near the top right of the page, next to a green button that says "Code".
-
-Can you see it?
-
-code, issues, pull requests, actions...
-
-7:55 PM
-You're in the right place! Now:
-
-Click the "Code" tab (first one)
-Then you should see the "Add file" button appear
-Can you see it now?
-
-set github copilot, add collaborators, quick setup
-
-7:55 PM
-You're on the right page! Under "Quick setup" you should see a link that says:
-
-"uploading an existing file"
-
-Click that!
-
-ok
-
-7:56 PM
-Now:
-
-Drag and drop all the files from your downloaded oceanfront folder into the upload area
-Scroll down → click "Commit changes"
-Let me know when it's done!
-
-ok
-
-7:56 PM
-Did the files upload successfully? Can you see them listed in your repository now?
-
-yes
-
-7:56 PM
-Perfect! 🎉 Now let's deploy to Vercel:
-
-Go to vercel.com and log in
-Click "Add New Project"
-Find and select your oceanfront-canchas repository
-Click "Deploy" — leave all settings as default
-Let me know when it's done!
-
-done
-
-8:25 PM
-Amazing! 🚀 Do you have the live URL that Vercel gave you? It should look something like oceanfront-canchas.vercel.app.
-
-If so, open it and let's make sure everything is working correctly!
-
-continue to dashboard
-
-8:25 PM
-Click "Continue to Dashboard" — then share the URL Vercel gave you so we can test the app!
-
-oceanfront-canchas.vercel.app
-
-8:26 PM
-Let me check it!
-
-
-Fetched: Ocean Front
-Fetched: Ocean Front
-It's live! 🎉 Open it on your phone or browser at:
-
-👉 oceanfront-canchas.vercel.app
-
-Can you see the app loading correctly with the dark navy background and gold Ocean Front header?
-
-nop
-
-8:28 PM
-What do you see? A blank page, an error message, or something else?
-
-blank
-
-8:28 PM
-That's likely a Firebase security rules issue. Let's fix it:
-
-Go to console.firebase.google.com
-Open your of-canchas project
-Go to Firestore Database
-Click the "Rules" tab
-Make sure the rules look like this:
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a1628" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="OF Canchas" />
+  <title>Ocean Front – Canchas</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f1f3d;
+      --navy-light: #162848;
+      --gold: #C9A84C;
+      --gold-dim: rgba(201,168,76,0.15);
+      --white: #f0f4ff;
+      --gray: #8899bb;
+      --red: #e05555;
+      --green: #4caf7d;
+      --radius: 14px;
+      --radius-sm: 8px;
     }
-  }
-}
-Click Publish
-Then refresh the app. Does it load?
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .app-shell { max-width: 480px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+    .header { background: var(--navy-mid); border-bottom: 1px solid var(--gold-dim); padding: 16px 20px; }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; }
+    .logo-o { width: 44px; height: 44px; border-radius: 50%; border: 5px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; color: var(--gold); flex-shrink: 0; }
+    .header-title { font-size: 18px; font-weight: 600; color: var(--gold); letter-spacing: 0.5px; display: block; }
+    .header-sub { font-size: 12px; color: var(--gray); display: block; }
+    .tab-bar { display: flex; background: var(--navy-mid); border-bottom: 1px solid var(--gold-dim); padding: 0 8px; }
+    .tab-btn { flex: 1; padding: 12px 4px; background: none; border: none; border-bottom: 2px solid transparent; color: var(--gray); font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .content { flex: 1; padding: 20px 16px; overflow-y: auto; }
+    .section { animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+    .section-title { font-size: 20px; font-weight: 500; margin-bottom: 20px; }
+    .court-cards { display: flex; flex-direction: column; gap: 12px; }
+    .court-card { background: var(--navy-light); border: 1px solid var(--gold-dim); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; text-align: left; width: 100%; }
+    .court-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+    .court-emoji { font-size: 28px; }
+    .court-name { font-size: 17px; font-weight: 500; color: var(--white); }
+    .court-desc { font-size: 13px; color: var(--gray); }
+    .date-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; scrollbar-width: none; }
+    .date-scroll::-webkit-scrollbar { display: none; }
+    .date-btn { flex-shrink: 0; padding: 8px 14px; border-radius: 20px; border: 1px solid var(--navy-light); background: var(--navy-light); color: var(--gray); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .date-btn.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .slots-grid { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+    .slot { padding: 13px 16px; border-radius: var(--radius-sm); border: 1px solid; font-family: 'DM Sans', sans-serif; font-size: 14px; text-align: left; cursor: pointer; transition: all 0.15s; background: none; width: 100%; }
+    .slot.available { background: var(--navy-light); border-color: rgba(240,244,255,0.1); color: var(--white); }
+    .slot.available:hover { border-color: var(--gold); color: var(--gold); }
+    .slot.selected { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); font-weight: 500; }
+    .slot.taken { background: rgba(224,85,85,0.08); border-color: rgba(224,85,85,0.2); color: rgba(224,85,85,0.5); cursor: not-allowed; text-decoration: line-through; }
+    .slot.past { background: rgba(136,153,187,0.05); border-color: rgba(136,153,187,0.1); color: rgba(136,153,187,0.3); cursor: not-allowed; }
+    .summary-card { background: var(--navy-light); border: 1px solid var(--gold-dim); border-radius: var(--radius); padding: 16px; margin-bottom: 20px; }
+    .summary-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-row span { color: var(--gray); }
+    .summary-row strong { color: var(--white); font-weight: 500; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; color: var(--gray); margin-bottom: 6px; }
+    .form-group input { width: 100%; padding: 12px 14px; background: var(--navy-light); border: 1px solid rgba(240,244,255,0.1); border-radius: var(--radius-sm); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none; transition: border-color 0.2s; }
+    .form-group input:focus { border-color: var(--gold); }
+    .form-group input::placeholder { color: rgba(136,153,187,0.5); }
+    .form-group.row { display: flex; gap: 8px; }
+    .form-group.row input { flex: 1; }
+    .btn-primary { width: 100%; padding: 14px; background: var(--gold); color: var(--navy); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: opacity 0.2s; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-secondary { padding: 12px 16px; background: var(--navy-light); color: var(--gold); border: 1px solid var(--gold-dim); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; white-space: nowrap; }
+    .back-btn { background: none; border: none; color: var(--gray); font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; padding: 0; margin-bottom: 16px; }
+    .res-card { background: var(--navy-light); border: 1px solid var(--gold-dim); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; }
+    .res-card-top { display: flex; align-items: center; gap: 12px; }
+    .res-emoji { font-size: 24px; flex-shrink: 0; }
+    .res-court { font-size: 15px; font-weight: 500; }
+    .res-detail { font-size: 13px; color: var(--gray); margin-top: 2px; }
+    .cancel-btn { margin-left: auto; background: rgba(224,85,85,0.1); border: 1px solid rgba(224,85,85,0.2); color: var(--red); border-radius: 6px; padding: 6px 10px; font-size: 12px; cursor: pointer; flex-shrink: 0; }
+    .admin-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+    .admin-tab-btn { padding: 8px 16px; border-radius: 20px; border: 1px solid var(--navy-light); background: var(--navy-light); color: var(--gray); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+    .admin-tab-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .admin-subtitle { font-size: 15px; font-weight: 500; color: var(--gray); margin-bottom: 14px; }
+    .apt-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--navy-light); border: 1px solid var(--gold-dim); border-radius: var(--radius-sm); margin-bottom: 8px; font-size: 14px; }
+    .error-msg { color: var(--red); font-size: 13px; margin: 8px 0; }
+    .success-msg { color: var(--green); font-size: 13px; margin: 8px 0; }
+    .empty-msg { color: var(--gray); font-size: 14px; text-align: center; padding: 30px 0; }
+    .loading-msg { color: var(--gray); font-size: 14px; text-align: center; padding: 20px 0; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-it says read, write, if request.time
+    const app = initializeApp({
+      apiKey: "AIzaSyDdcqtmAllOV7iv0r5V3YJdcEqD4a_mfUw",
+      authDomain: "of-canchas.firebaseapp.com",
+      projectId: "of-canchas",
+      storageBucket: "of-canchas.firebasestorage.app",
+      messagingSenderId: "856514470352",
+      appId: "1:856514470352:web:f4ebb5ced67acc887219d5"
+    });
+    const db = getFirestore(app);
 
-8:32 PM
-Replace that whole rule with this:
+    const COURTS = {
+      grande: { id:'grande', name:'Cancha Grande', emoji:'⚽', desc:'Fútbol / Multipropósito' },
+      chica:  { id:'chica',  name:'Cancha Chica',  emoji:'🏀', desc:'Basketball (medio campo)' }
+    };
+    const ADMIN_PASSWORD = 'oceanfront2024';
 
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
+    let S = {
+      tab:'reservar', step:1,
+      selectedCourt:null, selectedDate:null, selectedSlot:null,
+      residentName:'', apartmentNumber:'',
+      adminLoggedIn:false, adminTab:'reservations',
+      allReservations:[], approvedApartments:[], myReservations:[],
+      myAptInput:'', loading:false, error:'', success:''
+    };
+
+    // DB helpers
+    const getApts = async () => (await getDocs(collection(db,'apartments'))).docs.map(d=>({id:d.id,...d.data()}));
+    const getAllRes = async () => {
+      const q = query(collection(db,'reservations'), orderBy('date','asc'));
+      return (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
+    };
+    const getResByApt = async apt => {
+      const q = query(collection(db,'reservations'), where('apartment','==',apt));
+      return (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
+    };
+    const addRes = data => addDoc(collection(db,'reservations'),{...data,createdAt:Timestamp.now()});
+    const delRes = id => deleteDoc(doc(db,'reservations',id));
+    const addApt = apt => addDoc(collection(db,'apartments'),{number:apt});
+    const delApt = id => deleteDoc(doc(db,'apartments',id));
+
+    // Time helpers
+    function slots() {
+      const r=[];
+      for(let h=7;h<24;h+=1) r.push({label:`${fh(h)} – ${fh(h+1)}`,startHour:h});
+      return r;
     }
-  }
-}
-Just select all the text in the rules editor, delete it, paste the above, and click Publish. Then refresh the app!
-
-it says that anyone can steal or modify or delete data in my database
-
-8:33 PM
-That's just a warning — it's fine for now. Click Publish anyway and we'll set up proper security rules later once everything is working.
-
-develp and test. click it?
-
-8:34 PM
-Yes, click "Publish"!
-
-i dont see publish
-
-8:34 PM
-Look for a button that says "Save rules" or "Publish rules" — it might be at the top right of the rules editor. Can you see that?
-
-run?
-
-8:35 PM
-No, don't click Run. Look for a button that says "Publish" or "Save" — it should be somewhere near the top of the rules editor, possibly a blue button.
-
-Can you describe what buttons you see on the screen?
-
-dont see that
-
-8:35 PM
-Try clicking the "Develop and test" option you mentioned earlier — that might take you to the right place where you can save the rules.
-
-open cloud shell or read the docs?
-
-8:36 PM
-Neither of those. Try this:
-
-Look at the very top of the rules editor — do you see any of these: "Edit rules", a pencil icon ✏️, or an "Edit" button? Click that first to enter edit mode, then the Publish button should appear.
-
-no
-
-8:36 PM
-Can you take a screenshot and describe what tabs or buttons you see at the very top of the Firestore page? For example, do you see Data, Rules, Indexes, Usage tabs?
-
-Screenshot 2026-04-12 at 8.36.59 PM.png
-8:37 PM
-The rules are already correct! Now click the "Develop & Test" button (blue, top right) — that should let you publish/save them.
-
-emulator suite in google cloud shell or in my local machine?
-
-8:37 PM
-Neither! Press Escape or click somewhere else to close that popup.
-
-Then look for a "Publish" button that should have appeared in the rules editor area after the rules loaded. It might be a small button above or below the code editor.
-
-i erased every rule, try again
-
-8:46 PM
-No worries! Click inside the rules editor and paste this exactly:
-
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
+    function fh(h) {
+      if(h===0||h===24) return '12:00 AM';
+      if(h===12) return '12:00 PM';
+      return h<12?`${h}:00 AM`:`${h-12}:00 PM`;
     }
-  }
-}
-Then look for a "Publish" button — it should appear once you make a change to the rules.
+    const today = () => new Date().toISOString().split('T')[0];
+    const isTaken = (res,court,date,h) => res.some(r=>r.court===court&&r.date===date&&r.startHour===h);
+    const isPast = (date,h) => new Date(`${date}T${String(h).padStart(2,'0')}:00:00`) < new Date();
+    const isFuture = r => new Date(`${r.date}T${String(r.startHour).padStart(2,'0')}:00:00`) >= new Date();
 
-still get this popup
-
-8:46 PM
-Click Escape to close the popup, then scroll down below the code editor — the Publish button might be hiding there!
-
-Your security rules are defined as public, so anyone can steal, modify, or delete data in your database
-1
-
-ru
-8:47 PM
-That warning is just informational — it's not a popup blocking you.
-
-Look for a "Publish" button anywhere on the page — it could be:
-
-Above the code editor
-Below the code editor
-Top right of the page
-Can you scroll up and down and tell me what buttons you see?
-
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // This rule allows anyone with your Firestore database reference to view, edit,
-    // and delete all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // all client requests to your Firestore database will be denied until you Update
-    // your rules
-    match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2026, 5, 12);
+    // Render
+    const $ = id => document.getElementById(id);
+    function render() {
+      $('app').innerHTML = html();
+      bind();
     }
-  }
-}
 
-Show more
-8:48 PM
-These are the original test mode rules — they're perfectly fine! They allow read/write until May 12, 2026, which is plenty of time.
+    function html() {
+      return `<div class="app-shell">
+        <header class="header"><div class="logo-wrap">
+          <div class="logo-o">O</div>
+          <div><span class="header-title">Ocean Front</span><span class="header-sub">Reserva de Canchas</span></div>
+        </div></header>
+        <div class="tab-bar">
+          <button class="tab-btn ${S.tab==='reservar'?'active':''}" data-tab="reservar">＋ Reservar</button>
+          <button class="tab-btn ${S.tab==='mis-reservas'?'active':''}" data-tab="mis-reservas">📋 Mis Reservas</button>
+          <button class="tab-btn ${S.tab==='admin'?'active':''}" data-tab="admin">⚙️ Admin</button>
+        </div>
+        <div class="content">
+          ${S.tab==='reservar'?pageReservar():''}
+          ${S.tab==='mis-reservas'?pageMisReservas():''}
+          ${S.tab==='admin'?pageAdmin():''}
+        </div>
+      </div>`;
+    }
 
-Now just click "Publish" — it should be a button right above or below this code. Can you see it now?
+    function pageReservar() {
+      if(S.step===1) return `<div class="section">
+        <h2 class="section-title">Selecciona una cancha</h2>
+        <div class="court-cards">
+          <button class="court-card" data-court="grande"><span class="court-emoji">⚽</span><span class="court-name">Cancha Grande</span><span class="court-desc">Fútbol / Multipropósito</span></button>
+          <button class="court-card" data-court="chica"><span class="court-emoji">🏀</span><span class="court-name">Cancha Chica</span><span class="court-desc">Basketball (medio campo)</span></button>
+        </div>
+        ${S.success?`<p class="success-msg" style="margin-top:16px">${S.success}</p>`:''}
+        ${S.error?`<p class="error-msg">${S.error}</p>`:''}
+      </div>`;
 
-no option for that
+      if(S.step===2) {
+        const c=COURTS[S.selectedCourt], sl=S.selectedDate||today();
+        const dates=[];
+        for(let i=0;i<14;i++){const d=new Date();d.setDate(d.getDate()+i);dates.push(d.toISOString().split('T')[0]);}
+        return `<div class="section">
+          <button class="back-btn" data-action="back">← Volver</button>
+          <h2 class="section-title">${c.emoji} ${c.name}</h2>
+          <div class="date-scroll">
+            ${dates.map(d=>{
+              const lbl=new Date(d+'T12:00:00').toLocaleDateString('es-PA',{weekday:'short',day:'numeric',month:'short'});
+              return `<button class="date-btn ${d===sl?'active':''}" data-date="${d}">${lbl}</button>`;
+            }).join('')}
+          </div>
+          <div class="slots-grid">
+            ${slots().map(s=>{
+              const tk=isTaken(S.allReservations,S.selectedCourt,sl,s.startHour);
+              const ps=isPast(sl,s.startHour);
+              const sel=S.selectedSlot===s.startHour;
+              const cls=tk?'slot taken':ps?'slot past':sel?'slot selected':'slot available';
+              return `<button class="${cls}" data-slot="${s.startHour}" ${tk||ps?'disabled':''}>${s.label}</button>`;
+            }).join('')}
+          </div>
+          ${S.error?`<p class="error-msg">${S.error}</p>`:''}
+          <button class="btn-primary" data-action="confirm-slot">Continuar →</button>
+        </div>`;
+      }
 
-8:49 PM
-Look at the very top right of the entire Firebase page — do you see a "Publish" or "Save" button up there? Sometimes it's hidden until you make a change to the code.
+      if(S.step===3) {
+        const c=COURTS[S.selectedCourt];
+        const sl=slots().find(s=>s.startHour===S.selectedSlot)?.label||'';
+        const dl=new Date(S.selectedDate+'T12:00:00').toLocaleDateString('es-PA',{weekday:'long',day:'numeric',month:'long'});
+        return `<div class="section">
+          <button class="back-btn" data-action="back">← Volver</button>
+          <h2 class="section-title">Confirmar reserva</h2>
+          <div class="summary-card">
+            <div class="summary-row"><span>Cancha</span><strong>${c.emoji} ${c.name}</strong></div>
+            <div class="summary-row"><span>Fecha</span><strong>${dl}</strong></div>
+            <div class="summary-row"><span>Horario</span><strong>${sl}</strong></div>
+          </div>
+          <div class="form-group"><label>Nombre del residente</label><input type="text" id="rName" placeholder="Tu nombre completo" value="${S.residentName}" /></div>
+          <div class="form-group"><label>Número de apartamento</label><input type="text" id="rApt" placeholder="Ej: 12A" value="${S.apartmentNumber}" /></div>
+          ${S.error?`<p class="error-msg">${S.error}</p>`:''}
+          <button class="btn-primary" data-action="submit" ${S.loading?'disabled':''}>${S.loading?'Reservando...':'Confirmar Reserva ✓'}</button>
+        </div>`;
+      }
+      return '';
+    }
 
-Try adding a space anywhere in the code (like after line 1) — that should trigger the Publish button to appear.
+    function resCard(r, canCancel=false) {
+      const c=COURTS[r.court];
+      const sl=slots().find(s=>s.startHour===r.startHour)?.label||'';
+      const dl=new Date(r.date+'T12:00:00').toLocaleDateString('es-PA',{weekday:'short',day:'numeric',month:'short'});
+      return `<div class="res-card"><div class="res-card-top">
+        <span class="res-emoji">${c?.emoji}</span>
+        <div><div class="res-court">${c?.name}</div><div class="res-detail">${dl} · ${sl}</div><div class="res-detail">Apto ${r.apartment} · ${r.name}</div></div>
+        ${canCancel?`<button class="cancel-btn" data-cancel="${r.id}">✕</button>`:''}
+      </div></div>`;
+    }
 
-wont let me publish it like that
+    function pageMisReservas() {
+      const fut=S.myReservations.filter(isFuture);
+      return `<div class="section">
+        <h2 class="section-title">Mis Reservas</h2>
+        <div class="form-group row">
+          <input type="text" id="myApt" placeholder="Número de apartamento" value="${S.myAptInput}" />
+          <button class="btn-secondary" data-action="search-my">Buscar</button>
+        </div>
+        ${S.loading?`<p class="loading-msg">Cargando...</p>`:''}
+        ${S.myAptInput&&!S.loading?(fut.length===0?`<p class="empty-msg">No tienes reservas activas.</p>`:fut.map(r=>resCard(r,true)).join('')):''}
+      </div>`;
+    }
 
-8:53 PM
-The original test mode rules are actually fine for now — they allow read/write until May 12. So don't change anything.
+    function pageAdmin() {
+      if(!S.adminLoggedIn) return `<div class="section">
+        <h2 class="section-title">Panel de Administración</h2>
+        <div class="form-group"><label>Contraseña</label><input type="password" id="adminPw" placeholder="Contraseña" /></div>
+        ${S.error?`<p class="error-msg">${S.error}</p>`:''}
+        <button class="btn-primary" data-action="admin-login">Ingresar</button>
+      </div>`;
 
-The blank page issue is probably not the rules. Let's check the browser console for errors:
+      const fut=S.allReservations.filter(isFuture);
+      return `<div class="section">
+        <div class="admin-tabs">
+          <button class="admin-tab-btn ${S.adminTab==='reservations'?'active':''}" data-atab="reservations">Reservas</button>
+          <button class="admin-tab-btn ${S.adminTab==='apartments'?'active':''}" data-atab="apartments">Apartamentos</button>
+        </div>
+        ${S.adminTab==='reservations'?`
+          <p style="font-size:15px;font-weight:500;color:var(--gray);margin-bottom:14px">Reservas activas (${fut.length})</p>
+          ${fut.length===0?`<p class="empty-msg">No hay reservas activas.</p>`:fut.map(r=>resCard(r,true)).join('')}
+        `:`
+          <p style="font-size:15px;font-weight:500;color:var(--gray);margin-bottom:14px">Apartamentos aprobados</p>
+          <div class="form-group row">
+            <input type="text" id="newApt" placeholder="Ej: 12A" />
+            <button class="btn-secondary" data-action="add-apt">Agregar</button>
+          </div>
+          ${S.error?`<p class="error-msg">${S.error}</p>`:''}
+          ${S.success?`<p class="success-msg">${S.success}</p>`:''}
+          <div>${S.approvedApartments.map(a=>`
+            <div class="apt-item"><span>Apto ${a.number}</span><button class="cancel-btn" data-del-apt="${a.id}">✕</button></div>
+          `).join('')}</div>
+        `}
+      </div>`;
+    }
 
-Go to oceanfront-canchas.vercel.app
-Press Command + Option + J to open the browser console
-Tell me what red error messages you see there
-failed to load module script
+    function bind() {
+      // Tabs
+      document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',async()=>{
+        S.tab=el.dataset.tab; S.error=''; S.success='';
+        if(S.tab==='admin'&&S.adminLoggedIn){S.loading=true;render();S.allReservations=await getAllRes();S.approvedApartments=await getApts();S.loading=false;}
+        render();
+      }));
 
-8:55 PM
-That's the issue! The browser can't load JavaScript modules directly. We need to fix the file structure on GitHub.
+      // Courts
+      document.querySelectorAll('[data-court]').forEach(el=>el.addEventListener('click',async()=>{
+        S.selectedCourt=el.dataset.court; S.selectedDate=today(); S.selectedSlot=null; S.error=''; S.success='';
+        S.loading=true; render();
+        S.allReservations=await getAllRes();
+        S.loading=false; S.step=2; render();
+      }));
 
-The problem is that the files need to be served correctly. Let me generate a single-file version that will work perfectly on Vercel without any module issues:
+      // Dates
+      document.querySelectorAll('[data-date]').forEach(el=>el.addEventListener('click',()=>{S.selectedDate=el.dataset.date;S.selectedSlot=null;render();}));
 
+      // Slots
+      document.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>{if(!el.disabled){S.selectedSlot=parseInt(el.dataset.slot);render();}}));
 
-Created 2 files, ran a command, read a file
-Created 2 files, ran a command, read a file
+      // Back
+      document.querySelectorAll('[data-action="back"]').forEach(el=>el.addEventListener('click',()=>{S.step--;S.error='';render();}));
 
-Single file app with Firebase CDN - no module issues
-index.html
+      // Confirm slot
+      document.querySelectorAll('[data-action="confirm-slot"]').forEach(el=>el.addEventListener('click',()=>{
+        if(S.selectedSlot===null){S.error='Por favor selecciona un horario.';render();return;}
+        S.step=3;S.error='';render();
+      }));
 
-Remove old index.html
+      // Submit reservation
+      document.querySelectorAll('[data-action="submit"]').forEach(el=>el.addEventListener('click',async()=>{
+        const name=$('rName')?.value.trim(), apt=$('rApt')?.value.trim().toUpperCase();
+        S.residentName=name; S.apartmentNumber=apt;
+        if(!name||!apt){S.error='Por favor completa todos los campos.';render();return;}
+        const approved=await getApts();
+        if(!approved.some(a=>a.number.toUpperCase()===apt)){S.error='Este apartamento no está registrado. Contacta al administrador.';render();return;}
+        const myRes=await getResByApt(apt);
+        if(myRes.some(isFuture)){S.error='Tu apartamento ya tiene una reserva activa.';render();return;}
+        S.loading=true;S.error='';render();
+        try{
+          await addRes({court:S.selectedCourt,date:S.selectedDate,startHour:S.selectedSlot,name,apartment:apt});
+          S.success='¡Reserva confirmada! 🎉';S.step=1;S.selectedCourt=null;S.selectedSlot=null;S.residentName='';S.apartmentNumber='';
+        }catch(e){S.error='Error al guardar. Intenta de nuevo.';}
+        S.loading=false;render();
+      }));
 
-Script
+      // Search my reservations
+      document.querySelectorAll('[data-action="search-my"]').forEach(el=>el.addEventListener('click',async()=>{
+        const apt=$('myApt')?.value.trim().toUpperCase();
+        S.myAptInput=apt;if(!apt)return;
+        S.loading=true;render();S.myReservations=await getResByApt(apt);S.loading=false;render();
+      }));
 
-Single file app - all in one index.html
-index.html
+      // Cancel reservation
+      document.querySelectorAll('[data-cancel]').forEach(el=>el.addEventListener('click',async()=>{
+        if(!confirm('¿Cancelar esta reserva?'))return;
+        await delRes(el.dataset.cancel);
+        S.allReservations=S.allReservations.filter(r=>r.id!==el.dataset.cancel);
+        S.myReservations=S.myReservations.filter(r=>r.id!==el.dataset.cancel);
+        render();
+      }));
 
-Presented file
-Done
-Here's the new index.html — everything is now in a single file so there are no module loading issues.
+      // Admin login
+      document.querySelectorAll('[data-action="admin-login"]').forEach(el=>el.addEventListener('click',async()=>{
+        if($('adminPw')?.value!==ADMIN_PASSWORD){S.error='Contraseña incorrecta.';render();return;}
+        S.adminLoggedIn=true;S.loading=true;render();
+        S.allReservations=await getAllRes();S.approvedApartments=await getApts();
+        S.loading=false;render();
+      }));
 
-What to do now:
+      // Admin tabs
+      document.querySelectorAll('[data-atab]').forEach(el=>el.addEventListener('click',()=>{S.adminTab=el.dataset.atab;S.error='';S.success='';render();}));
 
-Go to your GitHub repo oceanfront-canchas
-Click on the current index.html file
-Click the pencil ✏️ icon to edit
-Select all the text, delete it, and paste the new content from the file above
-Click "Commit changes"
-Vercel will automatically redeploy and the app should work! Would you like me to walk you through replacing the file on GitHub?
+      // Add apartment
+      document.querySelectorAll('[data-action="add-apt"]').forEach(el=>el.addEventListener('click',async()=>{
+        const apt=$('newApt')?.value.trim().toUpperCase();
+        if(!apt)return;
+        if(S.approvedApartments.some(a=>a.number.toUpperCase()===apt)){S.error='Ese apartamento ya está registrado.';render();return;}
+        await addApt(apt);S.approvedApartments=await getApts();S.success=`Apto ${apt} agregado.`;S.error='';render();
+      }));
 
+      // Delete apartment
+      document.querySelectorAll('[data-del-apt]').forEach(el=>el.addEventListener('click',async()=>{
+        if(!confirm('¿Eliminar este apartamento?'))return;
+        await delApt(el.dataset.delApt);S.approvedApartments=await getApts();render();
+      }));
+    }
 
-Index
-Code · HTML 
-where is the file
-
-9:05 PM
-Download it by clicking the file name "index" that appeared just above this message — it should download as index.html.
-
-now what?
-
-9:05 PM
-Now replace it on GitHub:
-
-Go to your github.com repo oceanfront-canchas
-Click on the index.html file
-Click the pencil ✏️ (edit) icon at the top right of the file
-Select all the text (Cmd+A) and delete it
-Paste the new content from the file you just downloaded
-Click "Commit changes"
-Vercel will auto-redeploy and the app should work! 🚀
-
-done
-
-9:06 PM
-Now go to oceanfront-canchas.vercel.app and refresh — does it load? 🤞
-
-yes
-
-9:07 PM
-🎉 It's live!
-
-Now let's test it quickly:
-
-Go to Admin tab → log in with password oceanfront2024
-Go to Apartamentos → add a test apartment (e.g. 1A)
-Go back to Reservar → try booking a court with apartment 1A
-Does everything work?
-
-yes.
-
-9:08 PM
-🎉 The app is fully live and working at oceanfront-canchas.vercel.app!
-
-Here's a summary of what's done:
-
-✅ Web app live on Vercel
-✅ Firebase/Firestore connected (real persistent data)
-✅ Court reservations working
-✅ Admin panel working
-✅ PWA ready (residents can "Add to Home Screen" on iPhone via Safari)
-Next steps when you're ready:
-
-Add all your apartment numbers in the Admin panel
-App Store — when you want to publish to Apple, we'll use Capacitor to wrap it into a native app
-Do you want to start adding the real apartment numbers now, or is there anything else you'd like to tweak first?
-
-ok, two issues I see,
-
-9:09 PM
-Tell me both! What do you see?
-
-The schedule it is kind of funny looking. 2. Change the hours to one hour insead of two
-9:10 PM
-Got it! Let me fix both — cleaner slot design and 1-hour blocks. Give me a moment...
-
-
-Edited 2 files, viewed a file, read a file
-Edited 2 files, viewed a file, read a file
-Done! Two changes made:
-
-1-hour slots instead of 2 (7:00 AM – 8:00 AM, 8:00 AM – 9:00 AM, etc.)
-Cleaner list layout for the slots (full width, easier to read)
-Download the new index.html and replace it on GitHub the same way as before — edit the file, select all, paste, commit!
-
-
-Index
-Code · HTML 
-
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-Index · HTML
-Copy
-
+    render();
+  </script>
+</body>
+</html>
 
 
