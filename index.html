@@ -161,7 +161,7 @@
 
     function html() {
       return `<div class="app-shell">
-        <header class="header"><div class="logo-wrap">
+        <header class="header" data-action="go-home" style="cursor:pointer"><div class="logo-wrap">
           <div class="logo-o">O</div>
           <div><span class="header-title">Ocean Front</span><span class="header-sub">Reserva de Canchas</span></div>
         </div></header>
@@ -212,7 +212,6 @@
             }).join('')}
           </div>
           ${S.error?`<p class="error-msg">${S.error}</p>`:''}
-          <button class="btn-primary" data-action="confirm-slot">Continuar →</button>
         </div>`;
       }
 
@@ -294,6 +293,9 @@
     }
 
     function bind() {
+      // Header go home
+      document.querySelectorAll('[data-action="go-home"]').forEach(el=>el.addEventListener('click',()=>{S.tab='reservar';S.step=1;S.error='';S.success='';render();}));
+
       // Tabs
       document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',async()=>{
         S.tab=el.dataset.tab; S.error=''; S.success='';
@@ -312,17 +314,11 @@
       // Dates
       document.querySelectorAll('[data-date]').forEach(el=>el.addEventListener('click',()=>{S.selectedDate=el.dataset.date;S.selectedSlot=null;render();}));
 
-      // Slots
-      document.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>{if(!el.disabled){S.selectedSlot=parseInt(el.dataset.slot);render();}}));
+      // Slots - go directly to step 3
+      document.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>{if(!el.disabled){S.selectedSlot=parseInt(el.dataset.slot);S.step=3;S.error='';render();}}));
 
       // Back
       document.querySelectorAll('[data-action="back"]').forEach(el=>el.addEventListener('click',()=>{S.step--;S.error='';render();}));
-
-      // Confirm slot
-      document.querySelectorAll('[data-action="confirm-slot"]').forEach(el=>el.addEventListener('click',()=>{
-        if(S.selectedSlot===null){S.error='Por favor selecciona un horario.';render();return;}
-        S.step=3;S.error='';render();
-      }));
 
       // Submit reservation
       document.querySelectorAll('[data-action="submit"]').forEach(el=>el.addEventListener('click',async()=>{
@@ -332,7 +328,9 @@
         const approved=await getApts();
         if(!approved.some(a=>a.number.toUpperCase()===apt)){S.error='Este apartamento no está registrado. Contacta al administrador.';render();return;}
         const myRes=await getResByApt(apt);
-        if(myRes.some(isFuture)){S.error='Tu apartamento ya tiene una reserva activa.';render();return;}
+        const futureRes=myRes.filter(isFuture);
+        if(futureRes.length>=2){S.error='Tu apartamento ya tiene 2 reservas activas.';render();return;}
+        if(futureRes.some(r=>r.date===S.selectedDate)){S.error='Tu apartamento ya tiene una reserva ese día.';render();return;}
         S.loading=true;S.error='';render();
         try{
           await addRes({court:S.selectedCourt,date:S.selectedDate,startHour:S.selectedSlot,name,apartment:apt});
@@ -387,5 +385,3 @@
   </script>
 </body>
 </html>
-
-
