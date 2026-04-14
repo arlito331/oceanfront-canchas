@@ -269,7 +269,7 @@ body{
 
 <div class="header">
   <div class="header-top">
-    <div class="logo">
+    <div class="logo" onclick="goHome()" style="cursor:pointer;">
       <div class="logo-oval">O</div>
       <div class="logo-text">
         <span>Ocean Front</span>
@@ -754,6 +754,15 @@ window.removeApt = async function(id) {
     showToast('Apartment removed');
     renderAdminApts();
   } catch(e){ showToast('Error'); }
+};
+
+window.goHome = function() {
+  resetFlow();
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector('.tab').classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-reservar').classList.add('active');
+  window.scrollTo(0,0);
 };
 
 hideLoader();
