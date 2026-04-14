@@ -42,41 +42,28 @@ body{
   margin:0 auto;
   position:relative;
 }
-
-/* LOADING SCREEN */
 #loading-screen{
-  position:fixed;inset:0;
-  background:var(--navy);
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  z-index:999;
-  transition:opacity 0.4s;
+  position:fixed;inset:0;background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:999;transition:opacity 0.4s;
 }
 #loading-screen.hidden{opacity:0;pointer-events:none;}
 .loader-oval{
-  width:60px;height:60px;
-  border-radius:50%;
-  border:3px solid var(--gold);
+  width:60px;height:60px;border-radius:50%;border:3px solid var(--gold);
   display:flex;align-items:center;justify-content:center;
-  font-size:26px;font-weight:600;color:var(--gold);
-  margin-bottom:20px;
+  font-size:26px;font-weight:600;color:var(--gold);margin-bottom:20px;
   animation:pulse 1.5s ease-in-out infinite;
 }
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.95)}}
 .loader-text{font-size:13px;color:var(--text-muted);letter-spacing:1px;}
-
-/* HEADER */
 .header{
-  background:var(--navy2);
-  border-bottom:1px solid var(--card-border);
-  padding:16px 20px 0;
-  position:sticky;top:0;z-index:100;
+  background:var(--navy2);border-bottom:1px solid var(--card-border);
+  padding:16px 20px 0;position:sticky;top:0;z-index:100;
 }
 .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
 .logo{display:flex;align-items:center;gap:10px;}
 .logo-oval{
-  width:36px;height:36px;border-radius:50%;
-  border:2.5px solid var(--gold);
+  width:36px;height:36px;border-radius:50%;border:2.5px solid var(--gold);
   display:flex;align-items:center;justify-content:center;
   font-size:16px;font-weight:600;color:var(--gold);
 }
@@ -96,13 +83,9 @@ body{
   background:none;border-top:none;border-left:none;border-right:none;
 }
 .tab.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:500;}
-
-/* PAGES */
 .page{display:none;}
 .page.active{display:block;}
 .content{padding:20px;}
-
-/* COURT CARDS */
 .court-card{
   background:var(--card);border:1px solid var(--card-border);
   border-radius:var(--radius);padding:20px;margin-bottom:14px;
@@ -118,21 +101,16 @@ body{
   color:var(--gold);font-size:11px;padding:3px 10px;border-radius:20px;margin-top:10px;
 }
 .select-indicator{
-  position:absolute;top:16px;right:16px;
-  width:22px;height:22px;border-radius:50%;
-  border:1.5px solid var(--gold-border);
-  display:flex;align-items:center;justify-content:center;transition:all 0.2s;
+  position:absolute;top:16px;right:16px;width:22px;height:22px;border-radius:50%;
+  border:1.5px solid var(--gold-border);display:flex;align-items:center;justify-content:center;transition:all 0.2s;
 }
 .court-card.selected .select-indicator{background:var(--gold);border-color:var(--gold);}
 .select-indicator svg{display:none;}
 .court-card.selected .select-indicator svg{display:block;}
-
-/* STEP BAR */
 .step-bar{display:flex;align-items:center;margin-bottom:24px;}
 .step-item{display:flex;align-items:center;flex:1;}
 .step-dot{
-  width:28px;height:28px;border-radius:50%;
-  border:1.5px solid var(--card-border);
+  width:28px;height:28px;border-radius:50%;border:1.5px solid var(--card-border);
   display:flex;align-items:center;justify-content:center;
   font-size:12px;color:var(--text-muted);flex-shrink:0;transition:all 0.3s;
 }
@@ -140,8 +118,6 @@ body{
 .step-dot.current{border-color:var(--gold);color:var(--gold);}
 .step-line{flex:1;height:1px;background:var(--card-border);}
 .step-line.done{background:var(--gold);}
-
-/* DATE PICKER */
 .section-title{
   font-size:12px;text-transform:uppercase;letter-spacing:1.5px;
   color:var(--text-muted);margin-bottom:12px;font-weight:400;
@@ -161,8 +137,6 @@ body{
 .date-day{font-size:11px;color:var(--text-muted);margin-bottom:2px;text-transform:uppercase;letter-spacing:0.5px;}
 .date-num{font-size:20px;font-weight:500;}
 .date-chip.selected .date-day,.date-chip.selected .date-num{color:var(--gold);}
-
-/* SLOTS */
 .slots-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
 .slot{
   background:var(--card);border:1px solid var(--card-border);
@@ -178,13 +152,8 @@ body{
 .slot-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;margin-top:6px;}
 .tag-free{background:rgba(46,204,113,0.15);color:#2ecc71;}
 .tag-taken{background:rgba(231,76,60,0.15);color:#e74c3c;}
-
-/* INPUTS */
 .input-group{margin-bottom:16px;}
-.input-label{
-  font-size:11px;color:var(--text-muted);margin-bottom:8px;
-  display:block;letter-spacing:0.5px;text-transform:uppercase;
-}
+.input-label{font-size:11px;color:var(--text-muted);margin-bottom:8px;display:block;letter-spacing:0.5px;text-transform:uppercase;}
 .input-field{
   width:100%;background:var(--card);border:1px solid var(--card-border);
   border-radius:var(--radius-sm);color:var(--white);
@@ -193,8 +162,6 @@ body{
 }
 .input-field:focus{border-color:var(--gold);}
 .input-field::placeholder{color:rgba(255,255,255,0.25);}
-
-/* SUMMARY */
 .summary-card{
   background:var(--gold-dim);border:1px solid var(--gold-border);
   border-radius:var(--radius);padding:18px;margin-bottom:24px;
@@ -203,8 +170,6 @@ body{
 .summary-row:not(:last-child){border-bottom:1px solid rgba(201,168,76,0.15);}
 .summary-label{font-size:13px;color:var(--text-muted);}
 .summary-value{font-size:14px;font-weight:500;color:var(--gold-light);}
-
-/* BUTTONS */
 .btn-primary{
   width:100%;background:var(--gold);color:var(--navy);border:none;
   border-radius:var(--radius-sm);padding:16px;font-size:15px;font-weight:600;
@@ -219,18 +184,13 @@ body{
   cursor:pointer;margin-top:10px;transition:all 0.2s;
 }
 .btn-ghost:active{background:var(--card);}
-
-/* RESERVATIONS */
 .reserva-card{
   background:var(--card);border:1px solid var(--card-border);
   border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;
 }
 .reserva-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .reserva-court{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500;}
-.reserva-status{
-  font-size:11px;padding:3px 10px;border-radius:10px;
-  background:rgba(46,204,113,0.15);color:#2ecc71;
-}
+.reserva-status{font-size:11px;padding:3px 10px;border-radius:10px;background:rgba(46,204,113,0.15);color:#2ecc71;}
 .reserva-detail{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);margin-bottom:6px;}
 .cancel-btn{
   width:100%;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.2);
@@ -238,8 +198,6 @@ body{
   font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:12px;transition:all 0.2s;
 }
 .cancel-btn:active{background:rgba(231,76,60,0.2);}
-
-/* SUCCESS */
 .success-screen{display:none;text-align:center;padding:40px 20px;}
 .success-screen.active{display:block;}
 .success-icon{
@@ -250,20 +208,14 @@ body{
 }
 .success-title{font-size:22px;font-weight:500;margin-bottom:8px;}
 .success-sub{font-size:14px;color:var(--text-muted);margin-bottom:30px;line-height:1.6;}
-
-/* ADMIN */
-.admin-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0.85);z-index:200;overflow-y:auto;
-}
+.admin-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;overflow-y:auto;}
 .admin-overlay.active{display:block;}
 .admin-panel{background:var(--navy2);min-height:100vh;padding:20px;}
 .admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
 .admin-title{font-size:18px;font-weight:500;}
 .close-btn{
   background:var(--card);border:1px solid var(--card-border);color:var(--white);
-  width:36px;height:36px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   cursor:pointer;font-size:18px;font-family:'DM Sans',sans-serif;
 }
 .admin-section{margin-bottom:28px;}
@@ -288,14 +240,6 @@ body{
   border-radius:var(--radius-sm);padding:0 18px;font-size:14px;
   font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;
 }
-
-/* VERIFY */
-.verify-screen{text-align:center;padding:16px 0 24px;}
-.verify-icon{font-size:40px;margin-bottom:12px;}
-.verify-title{font-size:18px;font-weight:500;margin-bottom:6px;}
-.verify-sub{font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;}
-
-/* TOAST */
 .toast{
   position:fixed;bottom:90px;left:50%;
   transform:translateX(-50%) translateY(20px);
@@ -305,31 +249,24 @@ body{
   white-space:nowrap;pointer-events:none;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* EMPTY */
 .empty-state{text-align:center;padding:40px 20px;}
 .empty-icon{font-size:40px;margin-bottom:12px;opacity:0.4;}
 .empty-text{font-size:14px;color:var(--text-muted);}
-
-/* SPINNER */
 .spinner{
   display:inline-block;width:16px;height:16px;
-  border:2px solid rgba(255,255,255,0.3);
-  border-top-color:var(--white);border-radius:50%;
-  animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:8px;
+  border:2px solid rgba(255,255,255,0.3);border-top-color:var(--white);
+  border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:8px;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<!-- LOADING -->
 <div id="loading-screen">
   <div class="loader-oval">O</div>
-  <div class="loader-text">Cargando canchas...</div>
+  <div class="loader-text">Loading courts...</div>
 </div>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-top">
     <div class="logo">
@@ -342,29 +279,14 @@ body{
     <button class="admin-btn" onclick="openAdmin()">Admin</button>
   </div>
   <div class="tabs">
-    <button class="tab active" onclick="showTab('reservar',this)">Reservar</button>
-    <button class="tab" onclick="showTab('mis-reservas',this)">Mis Reservas</button>
+    <button class="tab active" onclick="showTab('reservar',this)">Reserve</button>
+    <button class="tab" onclick="showTab('mis-reservas',this)">My Reservations</button>
   </div>
 </div>
 
-<!-- RESERVAR PAGE -->
+<!-- RESERVE PAGE -->
 <div id="page-reservar" class="page active">
-  <!-- Verify -->
-  <div id="step-verify" class="content">
-    <div class="verify-screen">
-      <div class="verify-icon">🏢</div>
-      <div class="verify-title">Ingresa tu apartamento</div>
-      <div class="verify-sub">Verifica tu unidad para continuar con la reserva</div>
-    </div>
-    <div class="input-group">
-      <label class="input-label">Número de apartamento</label>
-      <input id="apt-input" class="input-field" type="text" placeholder="Ej: 4B, 12A..." autocomplete="off" autocapitalize="characters">
-    </div>
-    <button class="btn-primary" id="verify-btn" onclick="verifyApt()">Verificar →</button>
-  </div>
-
-  <!-- Book -->
-  <div id="step-book" class="content" style="display:none;">
+  <div id="step-book" class="content">
     <div class="step-bar">
       <div class="step-item">
         <div class="step-dot current" id="sd1">1</div>
@@ -379,65 +301,69 @@ body{
       </div>
     </div>
 
-    <!-- Step 1 -->
+    <!-- Step 1: Court -->
     <div id="bs1">
-      <div class="section-title">Selecciona una cancha</div>
+      <div class="section-title">Select a court</div>
       <div class="court-card" id="cc-grande" onclick="selectCourt('grande')">
         <div class="select-indicator"><svg width="12" height="9" viewBox="0 0 12 9"><polyline points="1,4 5,8 11,1" fill="none" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="court-icon">⚽</div>
         <div class="court-name">Cancha Grande</div>
-        <div class="court-desc">Fútbol · Multiusos</div>
-        <div class="court-badge">Cancha completa</div>
+        <div class="court-desc">Soccer · Multipurpose</div>
+        <div class="court-badge">Full court</div>
       </div>
       <div class="court-card" id="cc-chica" onclick="selectCourt('chica')">
         <div class="select-indicator"><svg width="12" height="9" viewBox="0 0 12 9"><polyline points="1,4 5,8 11,1" fill="none" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="court-icon">🏀</div>
         <div class="court-name">Cancha Chica</div>
-        <div class="court-desc">Basketball · Media cancha</div>
+        <div class="court-desc">Basketball · Half court</div>
         <div class="court-badge">Half court</div>
       </div>
-      <button class="btn-primary" id="btn-step1" onclick="goStep(2)" disabled>Continuar →</button>
+      <button class="btn-primary" id="btn-step1" onclick="goStep(2)" disabled>Continue →</button>
     </div>
 
-    <!-- Step 2 -->
+    <!-- Step 2: Date & Time -->
     <div id="bs2" style="display:none;">
-      <div class="section-title">Elige la fecha</div>
+      <div class="section-title">Choose a date</div>
       <div class="date-scroll" id="date-scroll"></div>
-      <div class="section-title">Horarios disponibles</div>
+      <div class="section-title">Available time slots</div>
       <div class="slots-grid" id="slots-grid"></div>
-      <button class="btn-primary" id="btn-step2" onclick="goStep(3)" disabled>Continuar →</button>
-      <button class="btn-ghost" onclick="goStep(1)">← Volver</button>
+      <button class="btn-primary" id="btn-step2" onclick="goStep(3)" disabled>Continue →</button>
+      <button class="btn-ghost" onclick="goStep(1)">← Back</button>
     </div>
 
-    <!-- Step 3 -->
+    <!-- Step 3: Apartment + Name + Confirm -->
     <div id="bs3" style="display:none;">
-      <div class="section-title">Confirmar reserva</div>
+      <div class="section-title">Confirm reservation</div>
       <div class="summary-card" id="summary-card"></div>
       <div class="input-group">
-        <label class="input-label">Tu nombre</label>
-        <input id="name-input" class="input-field" type="text" placeholder="Nombre completo" autocomplete="off">
+        <label class="input-label">Apartment number</label>
+        <input id="apt-input" class="input-field" type="text" placeholder="e.g. 4B, 12A..." autocomplete="off" autocapitalize="characters">
       </div>
-      <button class="btn-primary" id="confirm-btn" onclick="confirmReserva()">Confirmar reserva</button>
-      <button class="btn-ghost" onclick="goStep(2)">← Volver</button>
+      <div class="input-group">
+        <label class="input-label">Your name</label>
+        <input id="name-input" class="input-field" type="text" placeholder="Full name" autocomplete="off">
+      </div>
+      <button class="btn-primary" id="confirm-btn" onclick="confirmReserva()">Confirm reservation</button>
+      <button class="btn-ghost" onclick="goStep(2)">← Back</button>
     </div>
   </div>
 
   <!-- Success -->
   <div id="success-screen" class="success-screen content">
     <div class="success-icon">✓</div>
-    <div class="success-title">¡Reserva confirmada!</div>
+    <div class="success-title">Reservation confirmed!</div>
     <div class="success-sub" id="success-msg"></div>
-    <button class="btn-primary" onclick="resetFlow()">Nueva reserva</button>
+    <button class="btn-primary" onclick="resetFlow()">New reservation</button>
   </div>
 </div>
 
-<!-- MIS RESERVAS PAGE -->
+<!-- MY RESERVATIONS PAGE -->
 <div id="page-mis-reservas" class="page">
   <div class="content">
-    <div class="section-title" style="margin-bottom:16px;">Mis Reservas</div>
+    <div class="section-title" style="margin-bottom:16px;">My Reservations</div>
     <div class="input-group">
-      <label class="input-label">Número de apartamento</label>
-      <input id="search-apt" class="input-field" type="text" placeholder="Ej: 4B..." autocomplete="off" autocapitalize="characters" oninput="loadMyReservas()">
+      <label class="input-label">Apartment number</label>
+      <input id="search-apt" class="input-field" type="text" placeholder="e.g. 4B..." autocomplete="off" autocapitalize="characters" oninput="loadMyReservas()">
     </div>
     <div id="my-reservas-list"></div>
   </div>
@@ -448,34 +374,33 @@ body{
   <div class="admin-panel">
     <div id="admin-login-panel">
       <div class="admin-header">
-        <div class="admin-title">Panel Admin</div>
+        <div class="admin-title">Admin Panel</div>
         <button class="close-btn" onclick="closeAdmin()">×</button>
       </div>
       <div class="input-group" style="margin-top:8px;">
-        <label class="input-label">Contraseña</label>
+        <label class="input-label">Password</label>
         <input id="admin-pass" class="input-field" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()">
       </div>
-      <button class="btn-primary" onclick="adminLogin()">Ingresar</button>
+      <button class="btn-primary" onclick="adminLogin()">Login</button>
     </div>
-
     <div id="admin-dashboard" style="display:none;">
       <div class="admin-header">
         <div class="admin-title">Admin · OF Canchas</div>
         <button class="close-btn" onclick="closeAdmin()">×</button>
       </div>
       <div style="display:flex;gap:8px;margin-bottom:20px;">
-        <button id="atab1" class="tab active" style="flex:1;border-radius:8px;border:1px solid var(--gold-border);" onclick="adminTab(1)">Reservas</button>
-        <button id="atab2" class="tab" style="flex:1;border-radius:8px;border:1px solid var(--card-border);" onclick="adminTab(2)">Apartamentos</button>
+        <button id="atab1" class="tab active" style="flex:1;border-radius:8px;border:1px solid var(--gold-border);" onclick="adminTab(1)">Reservations</button>
+        <button id="atab2" class="tab" style="flex:1;border-radius:8px;border:1px solid var(--card-border);" onclick="adminTab(2)">Apartments</button>
       </div>
       <div id="admin-reservas-panel" class="admin-section">
-        <div class="admin-section-title">Todas las reservas</div>
+        <div class="admin-section-title">All reservations</div>
         <div id="admin-reservas-list"></div>
       </div>
       <div id="admin-apts-panel" class="admin-section" style="display:none;">
-        <div class="admin-section-title">Apartamentos aprobados</div>
+        <div class="admin-section-title">Approved apartments</div>
         <div class="apt-input-row">
-          <input id="new-apt-input" class="input-field" type="text" placeholder="Ej: 5C" autocapitalize="characters">
-          <button class="add-btn" onclick="addApt()">+ Agregar</button>
+          <input id="new-apt-input" class="input-field" type="text" placeholder="e.g. 5C" autocapitalize="characters">
+          <button class="add-btn" onclick="addApt()">+ Add</button>
         </div>
         <div id="admin-apts-list"></div>
       </div>
@@ -485,12 +410,11 @@ body{
 
 <div class="toast" id="toast"></div>
 
-<!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getFirestore, collection, doc,
-  getDocs, addDoc, deleteDoc, setDoc, query, where, orderBy
+  getDocs, addDoc, deleteDoc, setDoc, query, where
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -518,9 +442,8 @@ const SLOTS = [
   {t:'10:00 PM',e:'12:00 AM',v:22},
 ];
 
-let state = { verifiedApt:null, court:null, date:null, slot:null };
+let state = { court:null, date:null, slot:null };
 
-// ── HELPERS ──────────────────────────────────────────────
 function showToast(msg, duration=2500) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -530,7 +453,7 @@ function showToast(msg, duration=2500) {
 
 function setLoading(btn, loading, label) {
   btn.disabled = loading;
-  btn.innerHTML = loading ? `<span class="spinner"></span>Cargando...` : label;
+  btn.innerHTML = loading ? `<span class="spinner"></span>Loading...` : label;
 }
 
 function hideLoader() {
@@ -539,7 +462,6 @@ function hideLoader() {
   setTimeout(()=>s.style.display='none', 400);
 }
 
-// ── TABS ──────────────────────────────────────────────────
 window.showTab = function(tab, el) {
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
@@ -548,254 +470,237 @@ window.showTab = function(tab, el) {
   if(tab==='mis-reservas') loadMyReservas();
 };
 
-// ── VERIFY ────────────────────────────────────────────────
-window.verifyApt = async function() {
-  const val = document.getElementById('apt-input').value.trim().toUpperCase();
-  if(!val){showToast('Ingresa tu número de apartamento');return;}
-  const btn = document.getElementById('verify-btn');
-  setLoading(btn, true, 'Verificar →');
-  try {
-    const snap = await getDocs(collection(db,'apartments'));
-    const apts = snap.docs.map(d=>d.id);
-    if(!apts.includes(val)){showToast('Apartamento no autorizado');setLoading(btn,false,'Verificar →');return;}
-
-    // Solo bloquear si tiene reserva en fecha de hoy en adelante
-    const today = new Date().toISOString().split('T')[0];
-    const q = query(collection(db,'reservations'), where('apt','==',val), where('date','>=',today));
-    const rSnap = await getDocs(q);
-    if(!rSnap.empty){showToast('Ya tienes una reserva activa');setLoading(btn,false,'Verificar →');return;}
-
-    state.verifiedApt = val;
-    document.getElementById('step-verify').style.display='none';
-    document.getElementById('step-book').style.display='block';
-    goStep(1);
-    buildDates();
-  } catch(e) {
-    showToast('Error de conexión');
-    console.error(e);
-  }
-  setLoading(btn,false,'Verificar →');
-};
-
-// ── COURT ─────────────────────────────────────────────────
 window.selectCourt = function(c) {
   state.court = c;
-  document.getElementById('cc-grande').classList.toggle('selected',c==='grande');
-  document.getElementById('cc-chica').classList.toggle('selected',c==='chica');
+  document.getElementById('cc-grande').classList.toggle('selected', c==='grande');
+  document.getElementById('cc-chica').classList.toggle('selected', c==='chica');
   document.getElementById('btn-step1').disabled = false;
 };
 
-// ── STEPS ─────────────────────────────────────────────────
 window.goStep = function(n) {
   ['bs1','bs2','bs3'].forEach((id,i)=>{
-    document.getElementById(id).style.display=(i+1===n)?'block':'none';
+    document.getElementById(id).style.display = (i+1===n) ? 'block' : 'none';
   });
   for(let i=1;i<=3;i++){
-    const dot=document.getElementById('sd'+i);
-    dot.className='step-dot'+(i<n?' done':i===n?' current':'');
+    const dot = document.getElementById('sd'+i);
+    dot.className = 'step-dot'+(i<n?' done':i===n?' current':'');
     dot.innerHTML = i<n ? '✓' : String(i);
   }
   for(let i=1;i<=2;i++){
-    document.getElementById('sl'+i).className='step-line'+(i<n?' done':'');
+    document.getElementById('sl'+i).className = 'step-line'+(i<n?' done':'');
   }
-  if(n===2){ state.slot=null; document.getElementById('btn-step2').disabled=true; buildSlots(); }
+  if(n===2){ state.slot=null; document.getElementById('btn-step2').disabled=true; buildDates(); }
   if(n===3) buildSummary();
+  window.scrollTo(0,0);
 };
 
-// ── DATES ─────────────────────────────────────────────────
 function buildDates() {
   const el = document.getElementById('date-scroll');
-  el.innerHTML='';
-  const days=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-  const months=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  el.innerHTML = '';
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   for(let i=0;i<10;i++){
-    const d=new Date(); d.setDate(d.getDate()+i);
-    const iso=d.toISOString().split('T')[0];
-    const chip=document.createElement('div');
-    chip.className='date-chip'+(i===0?' selected':'');
-    chip.innerHTML=`<div class="date-day">${days[d.getDay()]}</div><div class="date-num">${d.getDate()}</div><div class="date-day">${months[d.getMonth()]}</div>`;
-    chip.onclick=()=>{
+    const d = new Date(); d.setDate(d.getDate()+i);
+    const iso = d.toISOString().split('T')[0];
+    const chip = document.createElement('div');
+    chip.className = 'date-chip'+(i===0?' selected':'');
+    chip.innerHTML = `<div class="date-day">${days[d.getDay()]}</div><div class="date-num">${d.getDate()}</div><div class="date-day">${months[d.getMonth()]}</div>`;
+    chip.onclick = () => {
       document.querySelectorAll('.date-chip').forEach(x=>x.classList.remove('selected'));
       chip.classList.add('selected');
-      state.date=iso; state.slot=null;
-      document.getElementById('btn-step2').disabled=true;
+      state.date = iso; state.slot = null;
+      document.getElementById('btn-step2').disabled = true;
       buildSlots();
     };
-    if(i===0) state.date=iso;
+    if(i===0) state.date = iso;
     el.appendChild(chip);
   }
   buildSlots();
 }
 
-// ── SLOTS ─────────────────────────────────────────────────
 async function buildSlots() {
-  const el=document.getElementById('slots-grid');
-  el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:13px;"><span class="spinner"></span>Cargando horarios...</div>';
+  const el = document.getElementById('slots-grid');
+  el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:13px;"><span class="spinner"></span>Loading...</div>';
   try {
-    const q=query(collection(db,'reservations'),where('date','==',state.date));
-    const snap=await getDocs(q);
-    const takenSlots=snap.docs.filter(d=>d.data().court===state.court).map(d=>d.data().slot);
-    el.innerHTML='';
+    const q = query(collection(db,'reservations'), where('date','==',state.date));
+    const snap = await getDocs(q);
+    const takenSlots = snap.docs.filter(d=>d.data().court===state.court).map(d=>d.data().slot);
+    el.innerHTML = '';
     SLOTS.forEach(s=>{
-      const taken=takenSlots.includes(s.v);
-      const div=document.createElement('div');
-      div.className='slot'+(taken?' taken':'');
-      div.innerHTML=`<div class="slot-time">${s.t}</div><div class="slot-end">hasta ${s.e}</div><div class="slot-tag ${taken?'tag-taken':'tag-free'}">${taken?'Ocupado':'Disponible'}</div>`;
+      const taken = takenSlots.includes(s.v);
+      const div = document.createElement('div');
+      div.className = 'slot'+(taken?' taken':'');
+      div.innerHTML = `<div class="slot-time">${s.t}</div><div class="slot-end">until ${s.e}</div><div class="slot-tag ${taken?'tag-taken':'tag-free'}">${taken?'Taken':'Available'}</div>`;
       if(!taken){
-        div.onclick=()=>{
+        div.onclick = () => {
           document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
           div.classList.add('selected');
-          state.slot=s;
-          document.getElementById('btn-step2').disabled=false;
+          state.slot = s;
+          document.getElementById('btn-step2').disabled = false;
         };
       }
       el.appendChild(div);
     });
   } catch(e){
-    el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--danger);font-size:13px;">Error al cargar horarios</div>';
+    el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--danger);font-size:13px;">Error loading slots</div>';
   }
 }
 
-// ── SUMMARY ───────────────────────────────────────────────
 function buildSummary() {
-  const courtName=state.court==='grande'?'⚽ Cancha Grande':'🏀 Cancha Chica';
-  const d=new Date(state.date+'T12:00:00');
-  const dateStr=d.toLocaleDateString('es-PA',{weekday:'long',day:'numeric',month:'long'});
-  document.getElementById('summary-card').innerHTML=`
-    <div class="summary-row"><span class="summary-label">Cancha</span><span class="summary-value">${courtName}</span></div>
-    <div class="summary-row"><span class="summary-label">Fecha</span><span class="summary-value">${dateStr}</span></div>
-    <div class="summary-row"><span class="summary-label">Horario</span><span class="summary-value">${state.slot.t} – ${state.slot.e}</span></div>
-    <div class="summary-row"><span class="summary-label">Apartamento</span><span class="summary-value">${state.verifiedApt}</span></div>
+  const courtName = state.court==='grande' ? '⚽ Cancha Grande' : '🏀 Cancha Chica';
+  const d = new Date(state.date+'T12:00:00');
+  const dateStr = d.toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('summary-card').innerHTML = `
+    <div class="summary-row"><span class="summary-label">Court</span><span class="summary-value">${courtName}</span></div>
+    <div class="summary-row"><span class="summary-label">Date</span><span class="summary-value">${dateStr}</span></div>
+    <div class="summary-row"><span class="summary-label">Time</span><span class="summary-value">${state.slot.t} – ${state.slot.e}</span></div>
   `;
 }
 
-// ── CONFIRM ───────────────────────────────────────────────
 window.confirmReserva = async function() {
-  const name=document.getElementById('name-input').value.trim();
-  if(!name){showToast('Ingresa tu nombre');return;}
-  const btn=document.getElementById('confirm-btn');
-  setLoading(btn,true,'Confirmar reserva');
+  const apt = document.getElementById('apt-input').value.trim().toUpperCase();
+  const name = document.getElementById('name-input').value.trim();
+  if(!apt){ showToast('Enter your apartment number'); return; }
+  if(!name){ showToast('Enter your name'); return; }
+
+  const btn = document.getElementById('confirm-btn');
+  setLoading(btn, true, 'Confirm reservation');
+
   try {
-    const courtName=state.court==='grande'?'Cancha Grande':'Cancha Chica';
+    // Check apartment is approved
+    const aSnap = await getDocs(collection(db,'apartments'));
+    const apts = aSnap.docs.map(d=>d.id);
+    if(!apts.includes(apt)){ showToast('Apartment not authorized'); setLoading(btn,false,'Confirm reservation'); return; }
+
+    // Check no active reservation (today or future)
+    const today = new Date().toISOString().split('T')[0];
+    const rq = query(collection(db,'reservations'), where('apt','==',apt), where('date','>=',today));
+    const rSnap = await getDocs(rq);
+    if(!rSnap.empty){ showToast('This apartment already has an active reservation'); setLoading(btn,false,'Confirm reservation'); return; }
+
+    const courtName = state.court==='grande' ? 'Cancha Grande' : 'Cancha Chica';
     await addDoc(collection(db,'reservations'),{
-      apt:state.verifiedApt, name, court:state.court, courtName,
+      apt, name, court:state.court, courtName,
       date:state.date, slot:state.slot.v,
       slotLabel:`${state.slot.t} – ${state.slot.e}`,
       createdAt:new Date().toISOString()
     });
-    const d=new Date(state.date+'T12:00:00');
-    const dateStr=d.toLocaleDateString('es-PA',{weekday:'long',day:'numeric',month:'long'});
-    document.getElementById('success-msg').innerHTML=`<strong>${courtName}</strong><br>${dateStr}<br>${state.slot.t} – ${state.slot.e}`;
-    document.getElementById('step-book').style.display='none';
+
+    const d = new Date(state.date+'T12:00:00');
+    const dateStr = d.toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long'});
+    document.getElementById('success-msg').innerHTML = `<strong>${courtName}</strong><br>${dateStr}<br>${state.slot.t} – ${state.slot.e}`;
+    document.getElementById('step-book').style.display = 'none';
     document.getElementById('success-screen').classList.add('active');
   } catch(e){
-    showToast('Error al guardar. Intenta de nuevo.');
+    showToast('Error saving. Please try again.');
+    console.error(e);
   }
-  setLoading(btn,false,'Confirmar reserva');
+  setLoading(btn, false, 'Confirm reservation');
 };
 
-// ── RESET ─────────────────────────────────────────────────
 window.resetFlow = function() {
-  state={verifiedApt:null,court:null,date:null,slot:null};
-  document.getElementById('apt-input').value='';
-  document.getElementById('name-input').value='';
+  state = { court:null, date:null, slot:null };
+  document.getElementById('apt-input').value = '';
+  document.getElementById('name-input').value = '';
   document.getElementById('success-screen').classList.remove('active');
-  document.getElementById('step-book').style.display='none';
-  document.getElementById('step-verify').style.display='block';
+  document.getElementById('step-book').style.display = 'block';
   document.getElementById('cc-grande').classList.remove('selected');
   document.getElementById('cc-chica').classList.remove('selected');
-  document.getElementById('btn-step1').disabled=true;
-  document.getElementById('bs1').style.display='block';
-  document.getElementById('bs2').style.display='none';
-  document.getElementById('bs3').style.display='none';
-  for(let i=1;i<=3;i++){const d=document.getElementById('sd'+i);d.className='step-dot'+(i===1?' current':'');d.textContent=String(i);}
-  document.getElementById('sl1').className='step-line';
-  document.getElementById('sl2').className='step-line';
+  document.getElementById('btn-step1').disabled = true;
+  document.getElementById('bs1').style.display = 'block';
+  document.getElementById('bs2').style.display = 'none';
+  document.getElementById('bs3').style.display = 'none';
+  for(let i=1;i<=3;i++){
+    const d = document.getElementById('sd'+i);
+    d.className = 'step-dot'+(i===1?' current':'');
+    d.textContent = String(i);
+  }
+  document.getElementById('sl1').className = 'step-line';
+  document.getElementById('sl2').className = 'step-line';
+  window.scrollTo(0,0);
 };
 
-// ── MIS RESERVAS ──────────────────────────────────────────
 window.loadMyReservas = async function() {
-  const apt=document.getElementById('search-apt').value.trim().toUpperCase();
-  const el=document.getElementById('my-reservas-list');
-  if(!apt){el.innerHTML='';return;}
-  el.innerHTML='<div class="empty-state"><span class="spinner"></span></div>';
+  const apt = document.getElementById('search-apt').value.trim().toUpperCase();
+  const el = document.getElementById('my-reservas-list');
+  if(!apt){ el.innerHTML=''; return; }
+  el.innerHTML = '<div class="empty-state"><span class="spinner"></span></div>';
   try {
-    const q=query(collection(db,'reservations'),where('apt','==',apt));
-    const snap=await getDocs(q);
+    const q = query(collection(db,'reservations'), where('apt','==',apt));
+    const snap = await getDocs(q);
     if(snap.empty){
-      el.innerHTML=`<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No hay reservas para el apto ${apt}</div></div>`;
+      el.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No reservations for apt ${apt}</div></div>`;
       return;
     }
-    el.innerHTML=snap.docs.map(docSnap=>{
-      const r=docSnap.data(); const id=docSnap.id;
-      const d=new Date(r.date+'T12:00:00');
-      const dateStr=d.toLocaleDateString('es-PA',{weekday:'short',day:'numeric',month:'short'});
+    el.innerHTML = snap.docs.map(docSnap=>{
+      const r = docSnap.data(); const id = docSnap.id;
+      const d = new Date(r.date+'T12:00:00');
+      const dateStr = d.toLocaleDateString('en-US',{weekday:'short',day:'numeric',month:'short'});
       return `<div class="reserva-card">
         <div class="reserva-header">
           <div class="reserva-court">${r.court==='grande'?'⚽':'🏀'} ${r.courtName}</div>
-          <div class="reserva-status">Activa</div>
+          <div class="reserva-status">Active</div>
         </div>
         <div class="reserva-detail">📅 ${dateStr}</div>
         <div class="reserva-detail">🕐 ${r.slotLabel}</div>
         <div class="reserva-detail">👤 ${r.name}</div>
-        <button class="cancel-btn" onclick="cancelReserva('${id}')">Cancelar reserva</button>
+        <button class="cancel-btn" onclick="cancelReserva('${id}')">Cancel reservation</button>
       </div>`;
     }).join('');
   } catch(e){
-    el.innerHTML='<div class="empty-state"><div class="empty-text">Error de conexión</div></div>';
+    el.innerHTML = '<div class="empty-state"><div class="empty-text">Connection error</div></div>';
   }
 };
 
 window.cancelReserva = async function(id) {
   try {
     await deleteDoc(doc(db,'reservations',id));
-    showToast('Reserva cancelada');
+    showToast('Reservation cancelled');
     loadMyReservas();
-  } catch(e){ showToast('Error al cancelar'); }
+  } catch(e){ showToast('Error cancelling'); }
 };
 
-// ── ADMIN ─────────────────────────────────────────────────
 window.openAdmin = function() {
   document.getElementById('admin-overlay').classList.add('active');
-  document.getElementById('admin-pass').value='';
-  document.getElementById('admin-dashboard').style.display='none';
-  document.getElementById('admin-login-panel').style.display='block';
+  document.getElementById('admin-pass').value = '';
+  document.getElementById('admin-dashboard').style.display = 'none';
+  document.getElementById('admin-login-panel').style.display = 'block';
 };
 window.closeAdmin = function() {
   document.getElementById('admin-overlay').classList.remove('active');
 };
 window.adminLogin = function() {
   if(document.getElementById('admin-pass').value===ADMIN_PASS){
-    document.getElementById('admin-login-panel').style.display='none';
-    document.getElementById('admin-dashboard').style.display='block';
+    document.getElementById('admin-login-panel').style.display = 'none';
+    document.getElementById('admin-dashboard').style.display = 'block';
     adminTab(1);
-  } else { showToast('Contraseña incorrecta'); }
+  } else { showToast('Wrong password'); }
 };
 window.adminTab = function(n) {
-  document.getElementById('atab1').className='tab'+(n===1?' active':'');
-  document.getElementById('atab2').className='tab'+(n===2?' active':'');
-  document.getElementById('atab1').style.borderColor=n===1?'var(--gold-border)':'var(--card-border)';
-  document.getElementById('atab2').style.borderColor=n===2?'var(--gold-border)':'var(--card-border)';
-  document.getElementById('admin-reservas-panel').style.display=n===1?'block':'none';
-  document.getElementById('admin-apts-panel').style.display=n===2?'block':'none';
+  document.getElementById('atab1').className = 'tab'+(n===1?' active':'');
+  document.getElementById('atab2').className = 'tab'+(n===2?' active':'');
+  document.getElementById('atab1').style.borderColor = n===1?'var(--gold-border)':'var(--card-border)';
+  document.getElementById('atab2').style.borderColor = n===2?'var(--gold-border)':'var(--card-border)';
+  document.getElementById('admin-reservas-panel').style.display = n===1?'block':'none';
+  document.getElementById('admin-apts-panel').style.display = n===2?'block':'none';
   if(n===1) renderAdminReservas();
   else renderAdminApts();
 };
 
 async function renderAdminReservas() {
-  const el=document.getElementById('admin-reservas-list');
-  el.innerHTML='<div class="empty-state"><span class="spinner"></span></div>';
+  const el = document.getElementById('admin-reservas-list');
+  el.innerHTML = '<div class="empty-state"><span class="spinner"></span></div>';
   try {
-    const snap=await getDocs(collection(db,'reservations'));
-    if(snap.empty){el.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">Sin reservas</div></div>';return;}
-    el.innerHTML=snap.docs.map(docSnap=>{
-      const r=docSnap.data(); const id=docSnap.id;
-      const d=new Date(r.date+'T12:00:00');
-      const dateStr=d.toLocaleDateString('es-PA',{day:'numeric',month:'short'});
-      const slotObj=SLOTS.find(s=>s.v===r.slot);
+    const snap = await getDocs(collection(db,'reservations'));
+    if(snap.empty){ el.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No reservations</div></div>'; return; }
+    el.innerHTML = snap.docs.map(docSnap=>{
+      const r = docSnap.data(); const id = docSnap.id;
+      const d = new Date(r.date+'T12:00:00');
+      const dateStr = d.toLocaleDateString('en-US',{day:'numeric',month:'short'});
+      const slotObj = SLOTS.find(s=>s.v===r.slot);
       return `<div class="admin-row">
         <div class="admin-row-info">
-          <div class="admin-row-name">${r.name} · Apto ${r.apt}</div>
+          <div class="admin-row-name">${r.name} · Apt ${r.apt}</div>
           <div class="admin-row-sub">${r.courtName} · ${dateStr} · ${slotObj?slotObj.t:''}</div>
         </div>
         <button class="delete-mini" onclick="adminDeleteReserva('${id}')">×</button>
@@ -807,49 +712,47 @@ async function renderAdminReservas() {
 window.adminDeleteReserva = async function(id) {
   try {
     await deleteDoc(doc(db,'reservations',id));
-    showToast('Reserva eliminada');
+    showToast('Reservation deleted');
     renderAdminReservas();
   } catch(e){ showToast('Error'); }
 };
 
 async function renderAdminApts() {
-  const el=document.getElementById('admin-apts-list');
-  el.innerHTML='<div class="empty-state"><span class="spinner"></span></div>';
+  const el = document.getElementById('admin-apts-list');
+  el.innerHTML = '<div class="empty-state"><span class="spinner"></span></div>';
   try {
-    const snap=await getDocs(collection(db,'apartments'));
-    if(snap.empty){el.innerHTML='<div class="empty-state"><div class="empty-icon">🏢</div><div class="empty-text">No hay apartamentos</div></div>';return;}
-    el.innerHTML=snap.docs.map(docSnap=>`
+    const snap = await getDocs(collection(db,'apartments'));
+    if(snap.empty){ el.innerHTML='<div class="empty-state"><div class="empty-icon">🏢</div><div class="empty-text">No apartments</div></div>'; return; }
+    el.innerHTML = snap.docs.map(docSnap=>`
       <div class="admin-row">
-        <div class="admin-row-info"><div class="admin-row-name">Apartamento ${docSnap.id}</div></div>
+        <div class="admin-row-info"><div class="admin-row-name">Apartment ${docSnap.id}</div></div>
         <button class="delete-mini" onclick="removeApt('${docSnap.id}')">×</button>
       </div>`).join('');
   } catch(e){ el.innerHTML='<div class="empty-state"><div class="empty-text">Error</div></div>'; }
 }
 
 window.addApt = async function() {
-  const val=document.getElementById('new-apt-input').value.trim().toUpperCase();
+  const val = document.getElementById('new-apt-input').value.trim().toUpperCase();
   if(!val) return;
   try {
     await setDoc(doc(db,'apartments',val),{createdAt:new Date().toISOString()});
-    document.getElementById('new-apt-input').value='';
-    showToast('Apartamento agregado');
+    document.getElementById('new-apt-input').value = '';
+    showToast('Apartment added');
     renderAdminApts();
-  } catch(e){ showToast('Error al agregar'); }
+  } catch(e){ showToast('Error adding'); }
 };
 
 window.removeApt = async function(id) {
   try {
     await deleteDoc(doc(db,'apartments',id));
-    showToast('Apartamento eliminado');
+    showToast('Apartment removed');
     renderAdminApts();
   } catch(e){ showToast('Error'); }
 };
 
-// ── INIT ──────────────────────────────────────────────────
 hideLoader();
 </script>
 
-<!-- Service Worker registration -->
 <script>
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{
