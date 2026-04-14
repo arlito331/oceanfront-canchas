@@ -318,7 +318,7 @@ body{
         <div class="court-desc">Basketball · Half court</div>
         <div class="court-badge">Half court</div>
       </div>
-      <button class="btn-primary" id="btn-step1" onclick="goStep(2)" disabled>Continue →</button>
+
     </div>
 
     <!-- Step 2: Date & Time -->
@@ -474,7 +474,7 @@ window.selectCourt = function(c) {
   state.court = c;
   document.getElementById('cc-grande').classList.toggle('selected', c==='grande');
   document.getElementById('cc-chica').classList.toggle('selected', c==='chica');
-  document.getElementById('btn-step1').disabled = false;
+  setTimeout(()=>goStep(2), 150);
 };
 
 window.goStep = function(n) {
