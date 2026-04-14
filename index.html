@@ -327,7 +327,6 @@ body{
       <div class="date-scroll" id="date-scroll"></div>
       <div class="section-title">Available time slots</div>
       <div class="slots-grid" id="slots-grid"></div>
-      <button class="btn-primary" id="btn-step2" onclick="goStep(3)" disabled>Continue →</button>
       <button class="btn-ghost" onclick="goStep(1)">← Back</button>
     </div>
 
@@ -431,15 +430,23 @@ const db = getFirestore(app);
 
 const ADMIN_PASS = 'oceanfront2024';
 const SLOTS = [
-  {t:'7:00 AM',e:'9:00 AM',v:7},
-  {t:'9:00 AM',e:'11:00 AM',v:9},
-  {t:'11:00 AM',e:'1:00 PM',v:11},
-  {t:'1:00 PM',e:'3:00 PM',v:13},
-  {t:'3:00 PM',e:'5:00 PM',v:15},
-  {t:'5:00 PM',e:'7:00 PM',v:17},
-  {t:'7:00 PM',e:'9:00 PM',v:19},
-  {t:'9:00 PM',e:'11:00 PM',v:21},
-  {t:'10:00 PM',e:'12:00 AM',v:22},
+  {t:'7:00 AM',e:'8:00 AM',v:7},
+  {t:'8:00 AM',e:'9:00 AM',v:8},
+  {t:'9:00 AM',e:'10:00 AM',v:9},
+  {t:'10:00 AM',e:'11:00 AM',v:10},
+  {t:'11:00 AM',e:'12:00 PM',v:11},
+  {t:'12:00 PM',e:'1:00 PM',v:12},
+  {t:'1:00 PM',e:'2:00 PM',v:13},
+  {t:'2:00 PM',e:'3:00 PM',v:14},
+  {t:'3:00 PM',e:'4:00 PM',v:15},
+  {t:'4:00 PM',e:'5:00 PM',v:16},
+  {t:'5:00 PM',e:'6:00 PM',v:17},
+  {t:'6:00 PM',e:'7:00 PM',v:18},
+  {t:'7:00 PM',e:'8:00 PM',v:19},
+  {t:'8:00 PM',e:'9:00 PM',v:20},
+  {t:'9:00 PM',e:'10:00 PM',v:21},
+  {t:'10:00 PM',e:'11:00 PM',v:22},
+  {t:'11:00 PM',e:'12:00 AM',v:23},
 ];
 
 let state = { court:null, date:null, slot:null };
@@ -536,7 +543,7 @@ async function buildSlots() {
           document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
           div.classList.add('selected');
           state.slot = s;
-          document.getElementById('btn-step2').disabled = false;
+          setTimeout(()=>goStep(3), 150);
         };
       }
       el.appendChild(div);
@@ -572,11 +579,10 @@ window.confirmReserva = async function() {
     const apts = aSnap.docs.map(d=>d.id);
     if(!apts.includes(apt)){ showToast('Apartment not authorized'); setLoading(btn,false,'Confirm reservation'); return; }
 
-    // Check no active reservation (today or future)
-    const today = new Date().toISOString().split('T')[0];
-    const rq = query(collection(db,'reservations'), where('apt','==',apt), where('date','>=',today));
+    // Check no reservation on the same day for this apartment
+    const rq = query(collection(db,'reservations'), where('apt','==',apt), where('date','==',state.date));
     const rSnap = await getDocs(rq);
-    if(!rSnap.empty){ showToast('This apartment already has an active reservation'); setLoading(btn,false,'Confirm reservation'); return; }
+    if(!rSnap.empty){ showToast('This apartment already has a reservation on this day'); setLoading(btn,false,'Confirm reservation'); return; }
 
     const courtName = state.court==='grande' ? 'Cancha Grande' : 'Cancha Chica';
     await addDoc(collection(db,'reservations'),{
