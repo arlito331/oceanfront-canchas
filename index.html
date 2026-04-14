@@ -496,7 +496,7 @@ window.goStep = function(n) {
   for(let i=1;i<=2;i++){
     document.getElementById('sl'+i).className = 'step-line'+(i<n?' done':'');
   }
-  if(n===2){ state.slot=null; document.getElementById('btn-step2').disabled=true; buildDates(); }
+  if(n===2){ state.slot=null; buildDates(); }
   if(n===3) buildSummary();
   window.scrollTo(0,0);
 };
