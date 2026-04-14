@@ -558,15 +558,21 @@ window.verifyApt = async function() {
     const snap = await getDocs(collection(db,'apartments'));
     const apts = snap.docs.map(d=>d.id);
     if(!apts.includes(val)){showToast('Apartamento no autorizado');setLoading(btn,false,'Verificar →');return;}
-    const q = query(collection(db,'reservations'), where('apt','==',val));
+
+    // Solo bloquear si tiene reserva en fecha de hoy en adelante
+    const today = new Date().toISOString().split('T')[0];
+    const q = query(collection(db,'reservations'), where('apt','==',val), where('date','>=',today));
     const rSnap = await getDocs(q);
     if(!rSnap.empty){showToast('Ya tienes una reserva activa');setLoading(btn,false,'Verificar →');return;}
+
     state.verifiedApt = val;
     document.getElementById('step-verify').style.display='none';
     document.getElementById('step-book').style.display='block';
+    goStep(1);
     buildDates();
   } catch(e) {
     showToast('Error de conexión');
+    console.error(e);
   }
   setLoading(btn,false,'Verificar →');
 };
