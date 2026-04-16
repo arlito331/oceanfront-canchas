@@ -846,8 +846,10 @@ async function buildSlots(){
     const takenMap={};
     snap.docs.forEach(d=>{const data=d.data();if(data.court===state.court) takenMap[data.slot]={id:d.id,...data};});
     el.innerHTML='';
-    const dateObj=new Date(state.date+'T12:00:00');
-    const isWeekend=dateObj.getDay()===0||dateObj.getDay()===6;
+    const dateParts=state.date.split('-');
+    const dateObj=new Date(parseInt(dateParts[0]),parseInt(dateParts[1])-1,parseInt(dateParts[2]));
+    const dayOfWeek=dateObj.getDay();
+    const isWeekend=dayOfWeek===0||dayOfWeek===6;
     SLOTS.forEach(s=>{
       const blocked=isWeekend&&s.v<19;
       const res=takenMap[s.v];const taken=!!res||blocked;
