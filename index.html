@@ -556,6 +556,7 @@ body{
       </div>
       <div id="admin-apts-list"></div>
     </div>
+    <button class="btn-danger-outline" onclick="doLogout()" style="margin-top:10px;">Sign Out</button>
   </div>
 </div>
 
@@ -951,7 +952,14 @@ window.closeUserMenu=function(){document.getElementById('user-overlay').classLis
 
 // ==================== ADMIN ====================
 window.openAdmin = function(){closeUserMenu();document.getElementById('admin-overlay').classList.add('active');adminTab(1);};
-window.closeAdmin = function(){document.getElementById('admin-overlay').classList.remove('active');};
+window.closeAdmin = function(){
+  document.getElementById('admin-overlay').classList.remove('active');
+  if(!currentUser){
+    // Admin-only session, go back to login
+    isAdmin=false;localStorage.removeItem('of_admin');
+    hideAllScreens();document.getElementById('screen-login').style.display='';
+  }
+};
 
 window.adminTab = function(n){
   document.getElementById('atab1').className='tab'+(n===1?' active':'');
