@@ -636,7 +636,7 @@ const i18n = {
     err_slot_taken:'This slot was just booked by someone else.',
     err_already_booked:'You already have a reservation on this date.',
     err_save:'Error saving. Please try again.',confirm_cancel:'Reservation cancelled',
-    err_cancel:'Error cancelling',loading_text:'Loading...',active:'Active',
+    err_cancel:'Error cancelling',loading_text:'Loading...',active:'Active',blocked:'Blocked',
     days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
     months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
   },
@@ -667,7 +667,7 @@ const i18n = {
     err_slot_taken:'Este horario acaba de ser reservado.',
     err_already_booked:'Ya tienes una reserva en esta fecha.',
     err_save:'Error al guardar. Intenta de nuevo.',confirm_cancel:'Reserva cancelada',
-    err_cancel:'Error al cancelar',loading_text:'Cargando...',active:'Activa',
+    err_cancel:'Error al cancelar',loading_text:'Cargando...',active:'Activa',blocked:'Bloqueado',
     days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
     months:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
   }
@@ -846,11 +846,16 @@ async function buildSlots(){
     const takenMap={};
     snap.docs.forEach(d=>{const data=d.data();if(data.court===state.court) takenMap[data.slot]={id:d.id,...data};});
     el.innerHTML='';
+    const dateObj=new Date(state.date+'T12:00:00');
+    const isWeekend=dateObj.getDay()===0||dateObj.getDay()===6;
     SLOTS.forEach(s=>{
-      const res=takenMap[s.v];const taken=!!res;
+      const blocked=isWeekend&&s.v<19;
+      const res=takenMap[s.v];const taken=!!res||blocked;
       const div=document.createElement('div');
       div.className='slot'+(taken?' taken':'');
-      div.innerHTML=`<div class="slot-time">${s.t}</div><div class="slot-end">${T('until')} ${s.e}</div><div class="slot-tag ${taken?'tag-taken':'tag-free'}">${taken?T('taken'):T('available')}</div>`;
+      const tagLabel=blocked?T('blocked'):res?T('taken'):T('available');
+      const tagClass=blocked?'tag-taken':res?'tag-taken':'tag-free';
+      div.innerHTML=`<div class="slot-time">${s.t}</div><div class="slot-end">${T('until')} ${s.e}</div><div class="slot-tag ${tagClass}">${tagLabel}</div>`;
       if(!taken){div.onclick=()=>{document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));div.classList.add('selected');state.slot=s;setTimeout(()=>goStep(3),150);};}
       el.appendChild(div);
     });
