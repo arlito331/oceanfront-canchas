@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -56,6 +56,46 @@ body{
 }
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.95)}}
 .loader-text{font-size:13px;color:var(--text-muted);letter-spacing:1px;}
+
+/* ===== AUTH SCREENS ===== */
+.auth-screen{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:30px 20px;
+}
+.auth-logo{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+.auth-logo-oval{
+  width:44px;height:44px;border-radius:50%;border:2.5px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:600;color:var(--gold);
+}
+.auth-logo-text{font-size:20px;font-weight:600;color:var(--gold);letter-spacing:1px;}
+.auth-subtitle{color:var(--text-muted);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;}
+.auth-card{
+  background:var(--navy2);border:1px solid var(--card-border);
+  border-radius:var(--radius);padding:24px 20px;width:100%;max-width:400px;
+}
+.auth-card h2{font-size:18px;font-weight:500;margin-bottom:20px;color:var(--gold);}
+.auth-msg{
+  padding:12px 14px;border-radius:var(--radius-sm);font-size:13px;
+  margin-bottom:16px;line-height:1.5;
+}
+.auth-msg.info{background:rgba(201,168,76,0.1);border:1px solid var(--gold-border);color:var(--gold-light);}
+.auth-msg.error{background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;}
+.auth-msg.success{background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);color:#2ecc71;}
+.auth-switch{
+  text-align:center;margin-top:18px;font-size:13px;color:var(--text-muted);
+}
+.auth-switch a{color:var(--gold);font-weight:500;cursor:pointer;text-decoration:none;}
+.auth-admin-link{text-align:center;margin-top:14px;}
+.auth-admin-link a{color:var(--text-muted);font-size:11px;cursor:pointer;letter-spacing:0.5px;}
+.pw-toggle{position:relative;}
+.pw-toggle input{padding-right:50px;}
+.pw-toggle button{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--text-muted);cursor:pointer;
+  font-size:12px;font-family:'DM Sans',sans-serif;font-weight:400;
+}
+
 .header{
   background:var(--navy2);border-bottom:1px solid var(--card-border);
   padding:16px 20px 0;position:sticky;top:0;z-index:100;
@@ -70,11 +110,20 @@ body{
 .logo-text{display:flex;flex-direction:column;line-height:1.1;}
 .logo-text span:first-child{font-size:14px;font-weight:600;color:var(--gold);letter-spacing:1px;}
 .logo-text span:last-child{font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;}
-.admin-btn{
+.header-right{display:flex;align-items:center;gap:8px;}
+.lang-btn{
+  background:var(--card);border:1px solid var(--card-border);
+  color:var(--text-dim);border-radius:8px;padding:6px 10px;
+  font-size:11px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;
+  letter-spacing:0.5px;
+}
+.user-btn{
   background:var(--gold-dim);border:1px solid var(--gold-border);
   color:var(--gold);border-radius:8px;padding:6px 12px;
   font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:400;
+  display:flex;align-items:center;gap:6px;
 }
+.user-btn svg{width:14px;height:14px;flex-shrink:0;}
 .tabs{display:flex;}
 .tab{
   flex:1;padding:10px 0;text-align:center;font-size:13px;font-weight:400;
@@ -184,6 +233,12 @@ body{
   cursor:pointer;margin-top:10px;transition:all 0.2s;
 }
 .btn-ghost:active{background:var(--card);}
+.btn-danger-outline{
+  width:100%;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.2);
+  color:#e74c3c;border-radius:var(--radius-sm);padding:14px;font-size:14px;
+  font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:10px;transition:all 0.2s;
+}
+.btn-danger-outline:active{background:rgba(231,76,60,0.2);}
 .reserva-card{
   background:var(--card);border:1px solid var(--card-border);
   border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;
@@ -225,13 +280,18 @@ body{
   background:var(--card);border:1px solid var(--card-border);
   border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:8px;
 }
-.admin-row-info{flex:1;}
+.admin-row-info{flex:1;min-width:0;}
 .admin-row-name{font-size:14px;font-weight:500;}
 .admin-row-sub{font-size:12px;color:var(--text-muted);margin-top:2px;}
 .delete-mini{
   background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.2);
   color:#e74c3c;border-radius:6px;padding:6px 12px;
-  font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;
+  font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;flex-shrink:0;
+}
+.approve-mini{
+  background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);
+  color:#2ecc71;border-radius:6px;padding:6px 12px;
+  font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;flex-shrink:0;margin-right:6px;
 }
 .apt-input-row{display:flex;gap:8px;margin-bottom:16px;}
 .apt-input-row .input-field{flex:1;}
@@ -258,152 +318,257 @@ body{
   border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:8px;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
+.user-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;overflow-y:auto;}
+.user-overlay.active{display:block;}
+.user-panel{background:var(--navy2);min-height:100vh;padding:20px;}
+.user-info-row{
+  display:flex;align-items:center;gap:10px;padding:12px 0;
+  border-bottom:1px solid var(--card-border);font-size:14px;
+}
+.user-info-label{color:var(--text-muted);width:100px;flex-shrink:0;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;}
+.user-info-val{font-weight:400;color:var(--white);}
 </style>
 </head>
 <body>
 
 <div id="loading-screen">
   <div class="loader-oval">O</div>
-  <div class="loader-text">Loading courts...</div>
+  <div class="loader-text" data-i18n="loading">Loading courts...</div>
 </div>
 
-<div class="header">
-  <div class="header-top">
-    <div class="logo" onclick="goHome()" style="cursor:pointer;">
-      <div class="logo-oval">O</div>
-      <div class="logo-text">
-        <span>Ocean Front</span>
-        <span>Canchas</span>
-      </div>
-    </div>
-    <button class="admin-btn" onclick="openAdmin()">Admin</button>
+<!-- LOGIN -->
+<div id="screen-login" class="auth-screen" style="display:none;">
+  <div class="auth-logo">
+    <div class="auth-logo-oval">O</div>
+    <div class="auth-logo-text">Ocean Front</div>
   </div>
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('reservar',this)">Reserve</button>
-    <button class="tab" onclick="showTab('mis-reservas',this)">My Reservations</button>
-  </div>
-</div>
-
-<!-- RESERVE PAGE -->
-<div id="page-reservar" class="page active">
-  <div id="step-book" class="content">
-    <div class="step-bar">
-      <div class="step-item">
-        <div class="step-dot current" id="sd1">1</div>
-        <div class="step-line" id="sl1"></div>
-      </div>
-      <div class="step-item">
-        <div class="step-dot" id="sd2">2</div>
-        <div class="step-line" id="sl2"></div>
-      </div>
-      <div class="step-item" style="flex:0">
-        <div class="step-dot" id="sd3">3</div>
-      </div>
-    </div>
-
-    <!-- Step 1: Court -->
-    <div id="bs1">
-      <div class="section-title">Select a court</div>
-      <div class="court-card" id="cc-grande" onclick="selectCourt('grande')">
-        <div class="select-indicator"><svg width="12" height="9" viewBox="0 0 12 9"><polyline points="1,4 5,8 11,1" fill="none" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="court-icon">⚽</div>
-        <div class="court-name">Cancha Grande</div>
-        <div class="court-desc">Soccer · Multipurpose</div>
-        <div class="court-badge">Full court</div>
-      </div>
-      <div class="court-card" id="cc-chica" onclick="selectCourt('chica')">
-        <div class="select-indicator"><svg width="12" height="9" viewBox="0 0 12 9"><polyline points="1,4 5,8 11,1" fill="none" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="court-icon">🏀</div>
-        <div class="court-name">Cancha Chica</div>
-        <div class="court-desc">Basketball · Half court</div>
-        <div class="court-badge">Half court</div>
-      </div>
-
-    </div>
-
-    <!-- Step 2: Date & Time -->
-    <div id="bs2" style="display:none;">
-      <div class="section-title">Choose a date</div>
-      <div class="date-scroll" id="date-scroll"></div>
-      <div class="section-title">Available time slots</div>
-      <div class="slots-grid" id="slots-grid"></div>
-      <button class="btn-ghost" onclick="goStep(1)">← Back</button>
-    </div>
-
-    <!-- Step 3: Apartment + Name + Confirm -->
-    <div id="bs3" style="display:none;">
-      <div class="section-title">Confirm reservation</div>
-      <div class="summary-card" id="summary-card"></div>
-      <div class="input-group">
-        <label class="input-label">Apartment number</label>
-        <input id="apt-input" class="input-field" type="text" placeholder="e.g. 4B, 12A..." autocomplete="off" autocapitalize="characters">
-      </div>
-      <div class="input-group">
-        <label class="input-label">Your name</label>
-        <input id="name-input" class="input-field" type="text" placeholder="Full name" autocomplete="off">
-      </div>
-      <button class="btn-primary" id="confirm-btn" onclick="confirmReserva()">Confirm reservation</button>
-      <button class="btn-ghost" onclick="goStep(2)">← Back</button>
-    </div>
-  </div>
-
-  <!-- Success -->
-  <div id="success-screen" class="success-screen content">
-    <div class="success-icon">✓</div>
-    <div class="success-title">Reservation confirmed!</div>
-    <div class="success-sub" id="success-msg"></div>
-    <button class="btn-primary" onclick="resetFlow()">New reservation</button>
-  </div>
-</div>
-
-<!-- MY RESERVATIONS PAGE -->
-<div id="page-mis-reservas" class="page">
-  <div class="content">
-    <div class="section-title" style="margin-bottom:16px;">My Reservations</div>
+  <div class="auth-subtitle">Canchas</div>
+  <div class="auth-card">
+    <h2 data-i18n="login_title">Sign In</h2>
+    <div id="login-msg"></div>
     <div class="input-group">
-      <label class="input-label">Apartment number</label>
-      <input id="search-apt" class="input-field" type="text" placeholder="e.g. 4B..." autocomplete="off" autocapitalize="characters" oninput="loadMyReservas()">
+      <label class="input-label" data-i18n="email_label">Email</label>
+      <input class="input-field" type="email" id="login-email" placeholder="you@email.com" autocapitalize="none">
     </div>
-    <div id="my-reservas-list"></div>
+    <div class="input-group">
+      <label class="input-label" data-i18n="password_label">Password</label>
+      <div class="pw-toggle">
+        <input class="input-field" type="password" id="login-pass" placeholder="••••••••">
+        <button type="button" onclick="togglePw('login-pass',this)" data-i18n="show">Show</button>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="doLogin()" data-i18n="login_btn">Sign In</button>
+    <div class="auth-switch">
+      <span data-i18n="no_account">Don't have an account?</span> <a onclick="showAuth('register')" data-i18n="register_link">Register</a>
+    </div>
+    <div class="auth-admin-link">
+      <a onclick="showAuth('admin-login')" data-i18n="admin_link">Administrator</a>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div id="screen-register" class="auth-screen" style="display:none;">
+  <div class="auth-logo">
+    <div class="auth-logo-oval">O</div>
+    <div class="auth-logo-text">Ocean Front</div>
+  </div>
+  <div class="auth-subtitle">Canchas</div>
+  <div class="auth-card">
+    <h2 data-i18n="register_title">Create Account</h2>
+    <div id="register-msg"></div>
+    <div class="input-group">
+      <label class="input-label" data-i18n="name_label">Full name</label>
+      <input class="input-field" type="text" id="reg-name">
+    </div>
+    <div class="input-group">
+      <label class="input-label" data-i18n="apt_label">Apartment</label>
+      <input class="input-field" type="text" id="reg-apt" placeholder="e.g. 12B" autocapitalize="characters">
+    </div>
+    <div class="input-group">
+      <label class="input-label">WhatsApp</label>
+      <input class="input-field" type="tel" id="reg-whatsapp" placeholder="+507 6XXX-XXXX">
+    </div>
+    <div class="input-group">
+      <label class="input-label" data-i18n="email_label">Email</label>
+      <input class="input-field" type="email" id="reg-email" placeholder="you@email.com" autocapitalize="none">
+    </div>
+    <div class="input-group">
+      <label class="input-label" data-i18n="password_label">Password</label>
+      <div class="pw-toggle">
+        <input class="input-field" type="password" id="reg-pass" placeholder="Min 6 characters">
+        <button type="button" onclick="togglePw('reg-pass',this)" data-i18n="show">Show</button>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="doRegister()" data-i18n="register_btn">Create Account</button>
+    <div class="auth-switch">
+      <span data-i18n="have_account">Already have an account?</span> <a onclick="showAuth('login')" data-i18n="login_link">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="screen-admin-login" class="auth-screen" style="display:none;">
+  <div class="auth-logo">
+    <div class="auth-logo-oval">O</div>
+    <div class="auth-logo-text">Ocean Front</div>
+  </div>
+  <div class="auth-subtitle">Canchas</div>
+  <div class="auth-card">
+    <h2 data-i18n="admin_access">Admin Access</h2>
+    <div id="admin-login-msg"></div>
+    <div class="input-group">
+      <label class="input-label" data-i18n="admin_password">Admin password</label>
+      <div class="pw-toggle">
+        <input class="input-field" type="password" id="admin-pass-input" placeholder="••••••••">
+        <button type="button" onclick="togglePw('admin-pass-input',this)" data-i18n="show">Show</button>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="doAdminLogin()" data-i18n="login_btn">Sign In</button>
+    <button class="btn-ghost" onclick="showAuth('login')" data-i18n="back">← Back</button>
+  </div>
+</div>
+
+<!-- PENDING -->
+<div id="screen-pending" class="auth-screen" style="display:none;">
+  <div class="auth-logo"><div class="auth-logo-oval">O</div><div class="auth-logo-text">Ocean Front</div></div>
+  <div class="auth-subtitle">Canchas</div>
+  <div class="auth-card">
+    <div class="auth-msg info" data-i18n="pending_msg">⏳ Your account is pending approval. The administration will review your request. Once approved, you can sign in and make reservations.</div>
+    <button class="btn-ghost" onclick="doLogout()" data-i18n="logout">Sign Out</button>
+  </div>
+</div>
+
+<!-- REJECTED -->
+<div id="screen-rejected" class="auth-screen" style="display:none;">
+  <div class="auth-logo"><div class="auth-logo-oval">O</div><div class="auth-logo-text">Ocean Front</div></div>
+  <div class="auth-subtitle">Canchas</div>
+  <div class="auth-card">
+    <div class="auth-msg error" data-i18n="rejected_msg">❌ Your registration was not approved. Please contact building administration if you believe this is an error.</div>
+    <button class="btn-ghost" onclick="doLogout()" data-i18n="logout">Sign Out</button>
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="main-app" style="display:none;">
+  <div class="header">
+    <div class="header-top">
+      <div class="logo" onclick="goHome()" style="cursor:pointer;">
+        <div class="logo-oval">O</div>
+        <div class="logo-text"><span>Ocean Front</span><span>Canchas</span></div>
+      </div>
+      <div class="header-right">
+        <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">ES</button>
+        <button class="user-btn" onclick="openUserMenu()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span id="user-badge-name"></span>
+        </button>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" id="main-tab-reserve" onclick="showTab('reservar',this)" data-i18n="tab_reserve">Reserve</button>
+      <button class="tab" id="main-tab-my" onclick="showTab('mis-reservas',this)" data-i18n="tab_my">My Reservations</button>
+    </div>
+  </div>
+
+  <div id="page-reservar" class="page active">
+    <div id="step-book" class="content">
+      <div class="step-bar">
+        <div class="step-item"><div class="step-dot current" id="sd1">1</div><div class="step-line" id="sl1"></div></div>
+        <div class="step-item"><div class="step-dot" id="sd2">2</div><div class="step-line" id="sl2"></div></div>
+        <div class="step-item" style="flex:0"><div class="step-dot" id="sd3">3</div></div>
+      </div>
+      <div id="bs1">
+        <div class="section-title" data-i18n="select_court">Select a court</div>
+        <div class="court-card" id="cc-grande" onclick="selectCourt('grande')">
+          <div class="select-indicator"><svg width="12" height="9" viewBox="0 0 12 9"><polyline points="1,4 5,8 11,1" fill="none" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="court-icon">⚽</div>
+          <div class="court-name">Cancha Grande</div>
+          <div class="court-desc" data-i18n="court_grande_desc">Soccer · Multipurpose</div>
+          <div class="court-badge" data-i18n="full_court">Full court</div>
+        </div>
+        <div class="court-card" id="cc-chica" onclick="selectCourt('chica')">
+          <div class="select-indicator"><svg width="12" height="9" viewBox="0 0 12 9"><polyline points="1,4 5,8 11,1" fill="none" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="court-icon">🏀</div>
+          <div class="court-name">Cancha Chica</div>
+          <div class="court-desc" data-i18n="court_chica_desc">Basketball · Half court</div>
+          <div class="court-badge" data-i18n="half_court">Half court</div>
+        </div>
+      </div>
+      <div id="bs2" style="display:none;">
+        <div class="section-title" data-i18n="choose_date">Choose a date</div>
+        <div class="date-scroll" id="date-scroll"></div>
+        <div class="section-title" data-i18n="available_slots">Available time slots</div>
+        <div class="slots-grid" id="slots-grid"></div>
+        <button class="btn-ghost" onclick="goStep(1)" data-i18n="back">← Back</button>
+      </div>
+      <div id="bs3" style="display:none;">
+        <div class="section-title" data-i18n="confirm_reservation">Confirm reservation</div>
+        <div class="summary-card" id="summary-card"></div>
+        <button class="btn-primary" id="confirm-btn" onclick="confirmReserva()" data-i18n="confirm_btn">Confirm reservation</button>
+        <button class="btn-ghost" onclick="goStep(2)" data-i18n="back">← Back</button>
+      </div>
+    </div>
+    <div id="success-screen" class="success-screen content">
+      <div class="success-icon">✓</div>
+      <div class="success-title" data-i18n="success_title">Reservation confirmed!</div>
+      <div class="success-sub" id="success-msg"></div>
+      <button class="btn-primary" onclick="resetFlow()" data-i18n="new_reservation">New reservation</button>
+    </div>
+  </div>
+
+  <div id="page-mis-reservas" class="page">
+    <div class="content">
+      <div class="section-title" style="margin-bottom:16px;" data-i18n="tab_my">My Reservations</div>
+      <div id="my-reservas-list"></div>
+    </div>
   </div>
 </div>
 
 <!-- ADMIN OVERLAY -->
 <div id="admin-overlay" class="admin-overlay">
   <div class="admin-panel">
-    <div id="admin-login-panel">
-      <div class="admin-header">
-        <div class="admin-title">Admin Panel</div>
-        <button class="close-btn" onclick="closeAdmin()">×</button>
-      </div>
-      <div class="input-group" style="margin-top:8px;">
-        <label class="input-label">Password</label>
-        <input id="admin-pass" class="input-field" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()">
-      </div>
-      <button class="btn-primary" onclick="adminLogin()">Login</button>
+    <div class="admin-header">
+      <div class="admin-title">Admin · OF Canchas</div>
+      <button class="close-btn" onclick="closeAdmin()">×</button>
     </div>
-    <div id="admin-dashboard" style="display:none;">
-      <div class="admin-header">
-        <div class="admin-title">Admin · OF Canchas</div>
-        <button class="close-btn" onclick="closeAdmin()">×</button>
-      </div>
-      <div style="display:flex;gap:8px;margin-bottom:20px;">
-        <button id="atab1" class="tab active" style="flex:1;border-radius:8px;border:1px solid var(--gold-border);" onclick="adminTab(1)">Reservations</button>
-        <button id="atab2" class="tab" style="flex:1;border-radius:8px;border:1px solid var(--card-border);" onclick="adminTab(2)">Apartments</button>
-      </div>
-      <div id="admin-reservas-panel" class="admin-section">
-        <div class="admin-section-title">All reservations</div>
-        <div id="admin-reservas-list"></div>
-      </div>
-      <div id="admin-apts-panel" class="admin-section" style="display:none;">
-        <div class="admin-section-title">Approved apartments</div>
-        <div class="apt-input-row">
-          <input id="new-apt-input" class="input-field" type="text" placeholder="e.g. 5C" autocapitalize="characters">
-          <button class="add-btn" onclick="addApt()">+ Add</button>
-        </div>
-        <div id="admin-apts-list"></div>
-      </div>
+    <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;">
+      <button id="atab1" class="tab active" style="flex:1;border-radius:8px;border:1px solid var(--gold-border);min-width:0;" onclick="adminTab(1)">Users</button>
+      <button id="atab2" class="tab" style="flex:1;border-radius:8px;border:1px solid var(--card-border);min-width:0;" onclick="adminTab(2)">Reservations</button>
+      <button id="atab3" class="tab" style="flex:1;border-radius:8px;border:1px solid var(--card-border);min-width:0;" onclick="adminTab(3)">Apartments</button>
     </div>
+    <div id="admin-users-panel" class="admin-section">
+      <div style="display:flex;gap:6px;margin-bottom:14px;">
+        <button id="usub1" class="tab active" style="flex:1;border-radius:6px;border:1px solid var(--gold-border);font-size:12px;padding:8px;" onclick="adminUserSub(1)">Pending</button>
+        <button id="usub2" class="tab" style="flex:1;border-radius:6px;border:1px solid var(--card-border);font-size:12px;padding:8px;" onclick="adminUserSub(2)">Approved</button>
+      </div>
+      <div id="admin-users-list"></div>
+    </div>
+    <div id="admin-reservas-panel" class="admin-section" style="display:none;">
+      <div class="admin-section-title">All reservations</div>
+      <div id="admin-reservas-list"></div>
+    </div>
+    <div id="admin-apts-panel" class="admin-section" style="display:none;">
+      <div class="admin-section-title">Approved apartments</div>
+      <div class="apt-input-row">
+        <input id="new-apt-input" class="input-field" type="text" placeholder="e.g. 5C" autocapitalize="characters">
+        <button class="add-btn" onclick="addApt()">+ Add</button>
+      </div>
+      <div id="admin-apts-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- USER MENU -->
+<div id="user-overlay" class="user-overlay">
+  <div class="user-panel">
+    <div class="admin-header">
+      <div class="admin-title" data-i18n="my_account">My Account</div>
+      <button class="close-btn" onclick="closeUserMenu()">×</button>
+    </div>
+    <div id="user-info-content"></div>
+    <button class="btn-ghost" onclick="openAdmin()" style="margin-top:20px;" data-i18n="admin_link">Administrator</button>
+    <button class="btn-danger-outline" onclick="doLogout()" data-i18n="logout">Sign Out</button>
   </div>
 </div>
 
@@ -413,7 +578,7 @@ body{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getFirestore, collection, doc,
-  getDocs, addDoc, deleteDoc, setDoc, query, where
+  getDocs, addDoc, deleteDoc, setDoc, getDoc, updateDoc, query, where
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -430,350 +595,461 @@ const db = getFirestore(app);
 
 const ADMIN_PASS = 'oceanfront2024';
 const SLOTS = [
-  {t:'7:00 AM',e:'8:00 AM',v:7},
-  {t:'8:00 AM',e:'9:00 AM',v:8},
-  {t:'9:00 AM',e:'10:00 AM',v:9},
-  {t:'10:00 AM',e:'11:00 AM',v:10},
-  {t:'11:00 AM',e:'12:00 PM',v:11},
-  {t:'12:00 PM',e:'1:00 PM',v:12},
-  {t:'1:00 PM',e:'2:00 PM',v:13},
-  {t:'2:00 PM',e:'3:00 PM',v:14},
-  {t:'3:00 PM',e:'4:00 PM',v:15},
-  {t:'4:00 PM',e:'5:00 PM',v:16},
-  {t:'5:00 PM',e:'6:00 PM',v:17},
-  {t:'6:00 PM',e:'7:00 PM',v:18},
-  {t:'7:00 PM',e:'8:00 PM',v:19},
-  {t:'8:00 PM',e:'9:00 PM',v:20},
-  {t:'9:00 PM',e:'10:00 PM',v:21},
-  {t:'10:00 PM',e:'11:00 PM',v:22},
+  {t:'7:00 AM',e:'8:00 AM',v:7},{t:'8:00 AM',e:'9:00 AM',v:8},
+  {t:'9:00 AM',e:'10:00 AM',v:9},{t:'10:00 AM',e:'11:00 AM',v:10},
+  {t:'11:00 AM',e:'12:00 PM',v:11},{t:'12:00 PM',e:'1:00 PM',v:12},
+  {t:'1:00 PM',e:'2:00 PM',v:13},{t:'2:00 PM',e:'3:00 PM',v:14},
+  {t:'3:00 PM',e:'4:00 PM',v:15},{t:'4:00 PM',e:'5:00 PM',v:16},
+  {t:'5:00 PM',e:'6:00 PM',v:17},{t:'6:00 PM',e:'7:00 PM',v:18},
+  {t:'7:00 PM',e:'8:00 PM',v:19},{t:'8:00 PM',e:'9:00 PM',v:20},
+  {t:'9:00 PM',e:'10:00 PM',v:21},{t:'10:00 PM',e:'11:00 PM',v:22},
   {t:'11:00 PM',e:'12:00 AM',v:23},
 ];
 
-let state = { court:null, date:null, slot:null };
+// ==================== I18N ====================
+const i18n = {
+  en: {
+    loading:'Loading courts...',login_title:'Sign In',email_label:'Email',password_label:'Password',
+    show:'Show',hide:'Hide',login_btn:'Sign In',no_account:"Don't have an account?",
+    register_link:'Register',admin_link:'Administrator',register_title:'Create Account',
+    name_label:'Full name',apt_label:'Apartment',register_btn:'Create Account',
+    have_account:'Already have an account?',login_link:'Sign in',admin_access:'Admin Access',
+    admin_password:'Admin password',back:'← Back',
+    pending_msg:'⏳ Your account is pending approval. The administration will review your request. Once approved, you can sign in and make reservations.',
+    rejected_msg:'❌ Your registration was not approved. Please contact building administration if you believe this is an error.',
+    logout:'Sign Out',tab_reserve:'Reserve',tab_my:'My Reservations',
+    select_court:'Select a court',court_grande_desc:'Soccer · Multipurpose',full_court:'Full court',
+    court_chica_desc:'Basketball · Half court',half_court:'Half court',choose_date:'Choose a date',
+    available_slots:'Available time slots',confirm_reservation:'Confirm reservation',
+    confirm_btn:'Confirm reservation',success_title:'Reservation confirmed!',
+    new_reservation:'New reservation',my_account:'My Account',
+    available:'Available',taken:'Taken',until:'until',
+    court:'Court',date:'Date',time:'Time',resident:'Resident',apartment:'Apartment',
+    cancel_reservation:'Cancel reservation',no_reservations:'No reservations yet',
+    err_fields:'Please fill in all fields',err_password_short:'Password must be at least 6 characters',
+    err_email_invalid:'Please enter a valid email',err_email_exists:'This email is already registered',
+    err_register:'Error registering. Please try again.',
+    success_register:'Registration successful! Your account is pending approval.',
+    err_no_account:'No account found with that email.',err_wrong_pass:'Incorrect password.',
+    err_login:'Error signing in. Please try again.',err_wrong_admin:'Wrong password',
+    err_slot_taken:'This slot was just booked by someone else.',
+    err_already_booked:'You already have a reservation on this date for this court.',
+    err_save:'Error saving. Please try again.',confirm_cancel:'Reservation cancelled',
+    err_cancel:'Error cancelling',loading_text:'Loading...',active:'Active',
+    days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  },
+  es: {
+    loading:'Cargando canchas...',login_title:'Iniciar Sesión',email_label:'Correo electrónico',
+    password_label:'Contraseña',show:'Ver',hide:'Ocultar',login_btn:'Entrar',
+    no_account:'¿No tienes cuenta?',register_link:'Regístrate',admin_link:'Administrador',
+    register_title:'Crear Cuenta',name_label:'Nombre completo',apt_label:'Apartamento',
+    register_btn:'Crear Cuenta',have_account:'¿Ya tienes cuenta?',login_link:'Inicia sesión',
+    admin_access:'Acceso Admin',admin_password:'Contraseña de administrador',back:'← Volver',
+    pending_msg:'⏳ Tu cuenta está pendiente de aprobación. La administración revisará tu solicitud. Una vez aprobado, podrás hacer reservaciones.',
+    rejected_msg:'❌ Tu registro no fue aprobado. Comunícate con la administración si crees que es un error.',
+    logout:'Cerrar Sesión',tab_reserve:'Reservar',tab_my:'Mis Reservas',
+    select_court:'Selecciona una cancha',court_grande_desc:'Fútbol · Multiuso',full_court:'Cancha completa',
+    court_chica_desc:'Basketball · Media cancha',half_court:'Media cancha',choose_date:'Elige una fecha',
+    available_slots:'Horarios disponibles',confirm_reservation:'Confirmar reserva',
+    confirm_btn:'Confirmar reserva',success_title:'¡Reserva confirmada!',
+    new_reservation:'Nueva reserva',my_account:'Mi Cuenta',
+    available:'Disponible',taken:'Ocupado',until:'hasta',
+    court:'Cancha',date:'Fecha',time:'Hora',resident:'Residente',apartment:'Apartamento',
+    cancel_reservation:'Cancelar reserva',no_reservations:'Aún no tienes reservas',
+    err_fields:'Por favor completa todos los campos',err_password_short:'La contraseña debe tener al menos 6 caracteres',
+    err_email_invalid:'Por favor ingresa un correo válido',err_email_exists:'Este correo ya está registrado',
+    err_register:'Error al registrarse. Intenta de nuevo.',
+    success_register:'¡Registro exitoso! Tu cuenta está pendiente de aprobación.',
+    err_no_account:'No se encontró una cuenta con ese correo.',err_wrong_pass:'Contraseña incorrecta.',
+    err_login:'Error al iniciar sesión. Intenta de nuevo.',err_wrong_admin:'Contraseña incorrecta',
+    err_slot_taken:'Este horario acaba de ser reservado.',
+    err_already_booked:'Ya tienes una reserva en esta fecha para esta cancha.',
+    err_save:'Error al guardar. Intenta de nuevo.',confirm_cancel:'Reserva cancelada',
+    err_cancel:'Error al cancelar',loading_text:'Cargando...',active:'Activa',
+    days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+    months:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+  }
+};
 
-function showToast(msg, duration=2500) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), duration);
+let lang = localStorage.getItem('of_lang') || 'en';
+function T(k){ return (i18n[lang]&&i18n[lang][k]) || i18n.en[k] || k; }
+
+function applyLang(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(i18n[lang][k]) el.textContent = i18n[lang][k];
+  });
+  const lb = document.getElementById('lang-toggle');
+  if(lb) lb.textContent = lang==='en'?'ES':'EN';
 }
 
-function setLoading(btn, loading, label) {
-  btn.disabled = loading;
-  btn.innerHTML = loading ? `<span class="spinner"></span>Loading...` : label;
+window.toggleLang = function(){
+  lang = lang==='en'?'es':'en';
+  localStorage.setItem('of_lang',lang);
+  applyLang();
+  if(document.getElementById('main-app').style.display!=='none'){
+    if(state.date) buildDates();
+    loadMyReservas();
+  }
+};
+
+// ==================== STATE ====================
+let currentUser = null;
+let isAdmin = false;
+let state = {court:null,date:null,slot:null};
+let adminUserSubTab = 1;
+
+// ==================== HELPERS ====================
+function showToast(msg,dur=2500){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
+function setLoading(btn,loading,label){btn.disabled=loading;btn.innerHTML=loading?`<span class="spinner"></span>${T('loading_text')}`:label;}
+function hideLoader(){const s=document.getElementById('loading-screen');s.classList.add('hidden');setTimeout(()=>s.style.display='none',400);}
+function hideAllScreens(){['screen-login','screen-register','screen-admin-login','screen-pending','screen-rejected','main-app','loading-screen'].forEach(id=>{document.getElementById(id).style.display='none';});}
+window.showAuth=function(s){hideAllScreens();document.getElementById('screen-'+s).style.display='';};
+window.togglePw=function(id,btn){const i=document.getElementById(id);if(i.type==='password'){i.type='text';btn.textContent=T('hide');}else{i.type='password';btn.textContent=T('show');}};
+function showAuthMsg(elId,text,type='error'){document.getElementById(elId).innerHTML=`<div class="auth-msg ${type}">${text}</div>`;}
+function clearAuthMsg(elId){document.getElementById(elId).innerHTML='';}
+
+async function hashPassword(pw){
+  const data=new TextEncoder().encode(pw+'_of_salt_2024');
+  const hash=await crypto.subtle.digest('SHA-256',data);
+  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-function hideLoader() {
-  const s = document.getElementById('loading-screen');
-  s.classList.add('hidden');
-  setTimeout(()=>s.style.display='none', 400);
+// ==================== AUTH ====================
+window.doRegister = async function(){
+  const name=document.getElementById('reg-name').value.trim();
+  const apt=document.getElementById('reg-apt').value.trim().toUpperCase();
+  const whatsapp=document.getElementById('reg-whatsapp').value.trim();
+  const email=document.getElementById('reg-email').value.trim().toLowerCase();
+  const password=document.getElementById('reg-pass').value;
+  clearAuthMsg('register-msg');
+  if(!name||!apt||!whatsapp||!email||!password){showAuthMsg('register-msg',T('err_fields'));return;}
+  if(password.length<6){showAuthMsg('register-msg',T('err_password_short'));return;}
+  if(!/\S+@\S+\.\S+/.test(email)){showAuthMsg('register-msg',T('err_email_invalid'));return;}
+  try{
+    const existing=await getDocs(query(collection(db,'users'),where('email','==',email)));
+    if(!existing.empty){showAuthMsg('register-msg',T('err_email_exists'));return;}
+    const pwHash=await hashPassword(password);
+    await addDoc(collection(db,'users'),{name,apartment:apt,whatsapp,email,passwordHash:pwHash,status:'pending',createdAt:new Date().toISOString()});
+    showAuthMsg('register-msg',T('success_register'),'success');
+    document.getElementById('reg-name').value='';document.getElementById('reg-apt').value='';
+    document.getElementById('reg-whatsapp').value='';document.getElementById('reg-email').value='';
+    document.getElementById('reg-pass').value='';
+    setTimeout(()=>showAuth('login'),3000);
+  }catch(e){console.error(e);showAuthMsg('register-msg',T('err_register'));}
+};
+
+window.doLogin = async function(){
+  const email=document.getElementById('login-email').value.trim().toLowerCase();
+  const password=document.getElementById('login-pass').value;
+  clearAuthMsg('login-msg');
+  if(!email||!password){showAuthMsg('login-msg',T('err_fields'));return;}
+  try{
+    const pwHash=await hashPassword(password);
+    const snap=await getDocs(query(collection(db,'users'),where('email','==',email)));
+    if(snap.empty){showAuthMsg('login-msg',T('err_no_account'));return;}
+    const userDoc=snap.docs[0];const userData=userDoc.data();
+    if(userData.passwordHash!==pwHash){showAuthMsg('login-msg',T('err_wrong_pass'));return;}
+    currentUser={id:userDoc.id,...userData};
+    localStorage.setItem('of_user_id',userDoc.id);
+    if(userData.status==='pending'){hideAllScreens();document.getElementById('screen-pending').style.display='';}
+    else if(userData.status==='rejected'){hideAllScreens();document.getElementById('screen-rejected').style.display='';}
+    else if(userData.status==='approved'){enterMainApp();}
+  }catch(e){console.error(e);showAuthMsg('login-msg',T('err_login'));}
+};
+
+window.doAdminLogin = function(){
+  const pw=document.getElementById('admin-pass-input').value;
+  clearAuthMsg('admin-login-msg');
+  if(pw===ADMIN_PASS){isAdmin=true;localStorage.setItem('of_admin','true');hideAllScreens();document.getElementById('admin-overlay').classList.add('active');adminTab(1);}
+  else{showAuthMsg('admin-login-msg',T('err_wrong_admin'));}
+};
+
+window.doLogout = function(){
+  currentUser=null;isAdmin=false;localStorage.removeItem('of_user_id');localStorage.removeItem('of_admin');
+  closeUserMenu();closeAdmin();hideAllScreens();document.getElementById('screen-login').style.display='';
+};
+
+// ==================== SESSION RESTORE ====================
+async function checkSession(){
+  if(localStorage.getItem('of_admin')==='true'){isAdmin=true;hideAllScreens();document.getElementById('admin-overlay').classList.add('active');adminTab(1);hideLoader();return;}
+  const userId=localStorage.getItem('of_user_id');
+  if(userId){
+    try{
+      const userDoc=await getDoc(doc(db,'users',userId));
+      if(userDoc.exists()){
+        currentUser={id:userDoc.id,...userDoc.data()};
+        if(currentUser.status==='approved'){enterMainApp();hideLoader();return;}
+        else if(currentUser.status==='pending'){hideAllScreens();document.getElementById('screen-pending').style.display='';hideLoader();return;}
+        else{hideAllScreens();document.getElementById('screen-rejected').style.display='';hideLoader();return;}
+      }
+    }catch(e){console.error(e);}
+  }
+  hideAllScreens();document.getElementById('screen-login').style.display='';hideLoader();
 }
 
-window.showTab = function(tab, el) {
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+// ==================== MAIN APP ====================
+function enterMainApp(){
+  hideAllScreens();document.getElementById('main-app').style.display='';
+  document.getElementById('user-badge-name').textContent=currentUser.name.split(' ')[0];
+  applyLang();state={court:null,date:null,slot:null};resetFlow();
+}
+
+window.showTab = function(tab,el){
+  document.querySelectorAll('#main-app .header .tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+tab).classList.add('active');
   if(tab==='mis-reservas') loadMyReservas();
 };
 
-window.selectCourt = function(c) {
-  state.court = c;
-  document.getElementById('cc-grande').classList.toggle('selected', c==='grande');
-  document.getElementById('cc-chica').classList.toggle('selected', c==='chica');
-  setTimeout(()=>goStep(2), 150);
+window.selectCourt = function(c){
+  state.court=c;
+  document.getElementById('cc-grande').classList.toggle('selected',c==='grande');
+  document.getElementById('cc-chica').classList.toggle('selected',c==='chica');
+  setTimeout(()=>goStep(2),150);
 };
 
-window.goStep = function(n) {
-  ['bs1','bs2','bs3'].forEach((id,i)=>{
-    document.getElementById(id).style.display = (i+1===n) ? 'block' : 'none';
-  });
-  for(let i=1;i<=3;i++){
-    const dot = document.getElementById('sd'+i);
-    dot.className = 'step-dot'+(i<n?' done':i===n?' current':'');
-    dot.innerHTML = i<n ? '✓' : String(i);
-  }
-  for(let i=1;i<=2;i++){
-    document.getElementById('sl'+i).className = 'step-line'+(i<n?' done':'');
-  }
-  if(n===2){ state.slot=null; buildDates(); }
+window.goStep = function(n){
+  ['bs1','bs2','bs3'].forEach((id,i)=>{document.getElementById(id).style.display=(i+1===n)?'block':'none';});
+  for(let i=1;i<=3;i++){const dot=document.getElementById('sd'+i);dot.className='step-dot'+(i<n?' done':i===n?' current':'');dot.innerHTML=i<n?'✓':String(i);}
+  for(let i=1;i<=2;i++){document.getElementById('sl'+i).className='step-line'+(i<n?' done':'');}
+  if(n===2){state.slot=null;buildDates();}
   if(n===3) buildSummary();
   window.scrollTo(0,0);
 };
 
-function buildDates() {
-  const el = document.getElementById('date-scroll');
-  el.innerHTML = '';
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  for(let i=0;i<10;i++){
-    const d = new Date(); d.setDate(d.getDate()+i);
-    const iso = d.toISOString().split('T')[0];
-    const chip = document.createElement('div');
-    chip.className = 'date-chip'+(i===0?' selected':'');
-    chip.innerHTML = `<div class="date-day">${days[d.getDay()]}</div><div class="date-num">${d.getDate()}</div><div class="date-day">${months[d.getMonth()]}</div>`;
-    chip.onclick = () => {
-      document.querySelectorAll('.date-chip').forEach(x=>x.classList.remove('selected'));
-      chip.classList.add('selected');
-      state.date = iso; state.slot = null;
-      document.getElementById('btn-step2').disabled = true;
-      buildSlots();
-    };
-    if(i===0) state.date = iso;
+function buildDates(){
+  const el=document.getElementById('date-scroll');el.innerHTML='';
+  const days=T('days');const months=T('months');
+  for(let i=0;i<=14;i++){
+    const d=new Date();d.setDate(d.getDate()+i);
+    const iso=d.toISOString().split('T')[0];
+    const chip=document.createElement('div');
+    chip.className='date-chip'+(i===0?' selected':'');
+    chip.innerHTML=`<div class="date-day">${days[d.getDay()]}</div><div class="date-num">${d.getDate()}</div><div class="date-day">${months[d.getMonth()]}</div>`;
+    chip.onclick=()=>{document.querySelectorAll('.date-chip').forEach(x=>x.classList.remove('selected'));chip.classList.add('selected');state.date=iso;state.slot=null;buildSlots();};
+    if(i===0) state.date=iso;
     el.appendChild(chip);
   }
   buildSlots();
 }
 
-async function buildSlots() {
-  const el = document.getElementById('slots-grid');
-  el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:13px;"><span class="spinner"></span>Loading...</div>';
-  try {
-    const q = query(collection(db,'reservations'), where('date','==',state.date));
-    const snap = await getDocs(q);
-    const takenSlots = snap.docs.filter(d=>d.data().court===state.court).map(d=>d.data().slot);
-    el.innerHTML = '';
+async function buildSlots(){
+  const el=document.getElementById('slots-grid');
+  el.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:13px;"><span class="spinner"></span>${T('loading_text')}</div>`;
+  try{
+    const q2=query(collection(db,'reservations'),where('date','==',state.date));
+    const snap=await getDocs(q2);
+    const takenMap={};
+    snap.docs.forEach(d=>{const data=d.data();if(data.court===state.court) takenMap[data.slot]={id:d.id,...data};});
+    el.innerHTML='';
     SLOTS.forEach(s=>{
-      const taken = takenSlots.includes(s.v);
-      const div = document.createElement('div');
-      div.className = 'slot'+(taken?' taken':'');
-      div.innerHTML = `<div class="slot-time">${s.t}</div><div class="slot-end">until ${s.e}</div><div class="slot-tag ${taken?'tag-taken':'tag-free'}">${taken?'Taken':'Available'}</div>`;
-      if(!taken){
-        div.onclick = () => {
-          document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
-          div.classList.add('selected');
-          state.slot = s;
-          setTimeout(()=>goStep(3), 150);
-        };
-      }
+      const res=takenMap[s.v];const taken=!!res;
+      const div=document.createElement('div');
+      div.className='slot'+(taken?' taken':'');
+      div.innerHTML=`<div class="slot-time">${s.t}</div><div class="slot-end">${T('until')} ${s.e}</div><div class="slot-tag ${taken?'tag-taken':'tag-free'}">${taken?T('taken'):T('available')}</div>`;
+      if(!taken){div.onclick=()=>{document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));div.classList.add('selected');state.slot=s;setTimeout(()=>goStep(3),150);};}
       el.appendChild(div);
     });
-  } catch(e){
-    el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--danger);font-size:13px;">Error loading slots</div>';
-  }
+  }catch(e){el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--danger);font-size:13px;">Error</div>';}
 }
 
-function buildSummary() {
-  const courtName = state.court==='grande' ? '⚽ Cancha Grande' : '🏀 Cancha Chica';
-  const d = new Date(state.date+'T12:00:00');
-  const dateStr = d.toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long'});
-  document.getElementById('summary-card').innerHTML = `
-    <div class="summary-row"><span class="summary-label">Court</span><span class="summary-value">${courtName}</span></div>
-    <div class="summary-row"><span class="summary-label">Date</span><span class="summary-value">${dateStr}</span></div>
-    <div class="summary-row"><span class="summary-label">Time</span><span class="summary-value">${state.slot.t} – ${state.slot.e}</span></div>
-  `;
+function buildSummary(){
+  const courtName=state.court==='grande'?'⚽ Cancha Grande':'🏀 Cancha Chica';
+  const d=new Date(state.date+'T12:00:00');
+  const days=T('days');const months=T('months');
+  const dateStr=`${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]}`;
+  document.getElementById('summary-card').innerHTML=`
+    <div class="summary-row"><span class="summary-label">${T('court')}</span><span class="summary-value">${courtName}</span></div>
+    <div class="summary-row"><span class="summary-label">${T('date')}</span><span class="summary-value">${dateStr}</span></div>
+    <div class="summary-row"><span class="summary-label">${T('time')}</span><span class="summary-value">${state.slot.t} – ${state.slot.e}</span></div>
+    <div class="summary-row"><span class="summary-label">${T('resident')}</span><span class="summary-value">${currentUser.name}</span></div>
+    <div class="summary-row"><span class="summary-label">${T('apartment')}</span><span class="summary-value">${currentUser.apartment}</span></div>`;
 }
 
-window.confirmReserva = async function() {
-  const apt = document.getElementById('apt-input').value.trim().toUpperCase();
-  const name = document.getElementById('name-input').value.trim();
-  if(!apt){ showToast('Enter your apartment number'); return; }
-  if(!name){ showToast('Enter your name'); return; }
-
-  const btn = document.getElementById('confirm-btn');
-  setLoading(btn, true, 'Confirm reservation');
-
-  try {
-    // Check apartment is approved
-    const aSnap = await getDocs(collection(db,'apartments'));
-    const apts = aSnap.docs.map(d=>d.id);
-    if(!apts.includes(apt)){ showToast('Apartment not authorized'); setLoading(btn,false,'Confirm reservation'); return; }
-
-    // Check no reservation on the same day for this apartment
-    const rq = query(collection(db,'reservations'), where('apt','==',apt), where('date','==',state.date));
-    const rSnap = await getDocs(rq);
-    if(!rSnap.empty){ showToast('This apartment already has a reservation on this day'); setLoading(btn,false,'Confirm reservation'); return; }
-
-    const courtName = state.court==='grande' ? 'Cancha Grande' : 'Cancha Chica';
+window.confirmReserva = async function(){
+  const btn=document.getElementById('confirm-btn');
+  setLoading(btn,true,T('confirm_btn'));
+  try{
+    const q2=query(collection(db,'reservations'),where('date','==',state.date),where('court','==',state.court),where('slot','==',state.slot.v));
+    const check=await getDocs(q2);
+    if(!check.empty){showToast(T('err_slot_taken'));setLoading(btn,false,T('confirm_btn'));buildSlots();return;}
+    const q3=query(collection(db,'reservations'),where('date','==',state.date),where('userId','==',currentUser.id),where('court','==',state.court));
+    const myCheck=await getDocs(q3);
+    if(!myCheck.empty){showToast(T('err_already_booked'));setLoading(btn,false,T('confirm_btn'));return;}
+    const courtName=state.court==='grande'?'Cancha Grande':'Cancha Chica';
     await addDoc(collection(db,'reservations'),{
-      apt, name, court:state.court, courtName,
-      date:state.date, slot:state.slot.v,
-      slotLabel:`${state.slot.t} – ${state.slot.e}`,
-      createdAt:new Date().toISOString()
+      apt:currentUser.apartment,name:currentUser.name,userId:currentUser.id,
+      court:state.court,courtName,date:state.date,slot:state.slot.v,
+      slotLabel:`${state.slot.t} – ${state.slot.e}`,createdAt:new Date().toISOString()
     });
-
-    const d = new Date(state.date+'T12:00:00');
-    const dateStr = d.toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long'});
-    document.getElementById('success-msg').innerHTML = `<strong>${courtName}</strong><br>${dateStr}<br>${state.slot.t} – ${state.slot.e}`;
-    document.getElementById('step-book').style.display = 'none';
+    const d=new Date(state.date+'T12:00:00');const days=T('days');const months=T('months');
+    const dateStr=`${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]}`;
+    document.getElementById('success-msg').innerHTML=`<strong>${courtName}</strong><br>${dateStr}<br>${state.slot.t} – ${state.slot.e}`;
+    document.getElementById('step-book').style.display='none';
     document.getElementById('success-screen').classList.add('active');
-  } catch(e){
-    showToast('Error saving. Please try again.');
-    console.error(e);
-  }
-  setLoading(btn, false, 'Confirm reservation');
+  }catch(e){showToast(T('err_save'));console.error(e);}
+  setLoading(btn,false,T('confirm_btn'));
 };
 
-window.resetFlow = function() {
-  state = { court:null, date:null, slot:null };
-  document.getElementById('apt-input').value = '';
-  document.getElementById('name-input').value = '';
+window.resetFlow = function(){
+  state={court:null,date:null,slot:null};
   document.getElementById('success-screen').classList.remove('active');
-  document.getElementById('step-book').style.display = 'block';
+  document.getElementById('step-book').style.display='block';
   document.getElementById('cc-grande').classList.remove('selected');
   document.getElementById('cc-chica').classList.remove('selected');
-  document.getElementById('btn-step1').disabled = true;
-  document.getElementById('bs1').style.display = 'block';
-  document.getElementById('bs2').style.display = 'none';
-  document.getElementById('bs3').style.display = 'none';
-  for(let i=1;i<=3;i++){
-    const d = document.getElementById('sd'+i);
-    d.className = 'step-dot'+(i===1?' current':'');
-    d.textContent = String(i);
-  }
-  document.getElementById('sl1').className = 'step-line';
-  document.getElementById('sl2').className = 'step-line';
+  document.getElementById('bs1').style.display='block';
+  document.getElementById('bs2').style.display='none';
+  document.getElementById('bs3').style.display='none';
+  for(let i=1;i<=3;i++){const d2=document.getElementById('sd'+i);d2.className='step-dot'+(i===1?' current':'');d2.textContent=String(i);}
+  document.getElementById('sl1').className='step-line';document.getElementById('sl2').className='step-line';
   window.scrollTo(0,0);
 };
 
-window.loadMyReservas = async function() {
-  const apt = document.getElementById('search-apt').value.trim().toUpperCase();
-  const el = document.getElementById('my-reservas-list');
-  if(!apt){ el.innerHTML=''; return; }
-  el.innerHTML = '<div class="empty-state"><span class="spinner"></span></div>';
-  try {
-    const q = query(collection(db,'reservations'), where('apt','==',apt));
-    const snap = await getDocs(q);
-    if(snap.empty){
-      el.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No reservations for apt ${apt}</div></div>`;
-      return;
-    }
-    el.innerHTML = snap.docs.map(docSnap=>{
-      const r = docSnap.data(); const id = docSnap.id;
-      const d = new Date(r.date+'T12:00:00');
-      const dateStr = d.toLocaleDateString('en-US',{weekday:'short',day:'numeric',month:'short'});
+// ==================== MY RESERVATIONS ====================
+async function loadMyReservas(){
+  const el=document.getElementById('my-reservas-list');
+  if(!currentUser){el.innerHTML='';return;}
+  el.innerHTML='<div class="empty-state"><span class="spinner"></span></div>';
+  try{
+    const q2=query(collection(db,'reservations'),where('userId','==',currentUser.id));
+    const snap=await getDocs(q2);
+    if(snap.empty){el.innerHTML=`<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">${T('no_reservations')}</div></div>`;return;}
+    const days=T('days');const months=T('months');
+    const sorted=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.date.localeCompare(b.date));
+    el.innerHTML=sorted.map(r=>{
+      const d=new Date(r.date+'T12:00:00');
+      const dateStr=`${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]}`;
       return `<div class="reserva-card">
-        <div class="reserva-header">
-          <div class="reserva-court">${r.court==='grande'?'⚽':'🏀'} ${r.courtName}</div>
-          <div class="reserva-status">Active</div>
-        </div>
+        <div class="reserva-header"><div class="reserva-court">${r.court==='grande'?'⚽':'🏀'} ${r.courtName}</div><div class="reserva-status">${T('active')}</div></div>
         <div class="reserva-detail">📅 ${dateStr}</div>
         <div class="reserva-detail">🕐 ${r.slotLabel}</div>
-        <div class="reserva-detail">👤 ${r.name}</div>
-        <button class="cancel-btn" onclick="cancelReserva('${id}')">Cancel reservation</button>
+        <button class="cancel-btn" onclick="cancelReserva('${r.id}')">${T('cancel_reservation')}</button>
       </div>`;
     }).join('');
-  } catch(e){
-    el.innerHTML = '<div class="empty-state"><div class="empty-text">Connection error</div></div>';
-  }
+  }catch(e){el.innerHTML='<div class="empty-state"><div class="empty-text">Error</div></div>';}
+}
+window.loadMyReservas=loadMyReservas;
+
+window.cancelReserva = async function(id){
+  try{await deleteDoc(doc(db,'reservations',id));showToast(T('confirm_cancel'));loadMyReservas();}
+  catch(e){showToast(T('err_cancel'));}
 };
 
-window.cancelReserva = async function(id) {
-  try {
-    await deleteDoc(doc(db,'reservations',id));
-    showToast('Reservation cancelled');
-    loadMyReservas();
-  } catch(e){ showToast('Error cancelling'); }
+// ==================== USER MENU ====================
+window.openUserMenu = function(){
+  document.getElementById('user-info-content').innerHTML=`
+    <div class="user-info-row"><span class="user-info-label">${T('name_label')}</span><span class="user-info-val">${currentUser.name}</span></div>
+    <div class="user-info-row"><span class="user-info-label">${T('apartment')}</span><span class="user-info-val">${currentUser.apartment}</span></div>
+    <div class="user-info-row"><span class="user-info-label">WhatsApp</span><span class="user-info-val">${currentUser.whatsapp}</span></div>
+    <div class="user-info-row"><span class="user-info-label">${T('email_label')}</span><span class="user-info-val">${currentUser.email}</span></div>`;
+  document.getElementById('user-overlay').classList.add('active');
 };
+window.closeUserMenu=function(){document.getElementById('user-overlay').classList.remove('active');};
 
-window.openAdmin = function() {
-  document.getElementById('admin-overlay').classList.add('active');
-  document.getElementById('admin-pass').value = '';
-  document.getElementById('admin-dashboard').style.display = 'none';
-  document.getElementById('admin-login-panel').style.display = 'block';
-};
-window.closeAdmin = function() {
-  document.getElementById('admin-overlay').classList.remove('active');
-};
-window.adminLogin = function() {
-  if(document.getElementById('admin-pass').value===ADMIN_PASS){
-    document.getElementById('admin-login-panel').style.display = 'none';
-    document.getElementById('admin-dashboard').style.display = 'block';
-    adminTab(1);
-  } else { showToast('Wrong password'); }
-};
-window.adminTab = function(n) {
-  document.getElementById('atab1').className = 'tab'+(n===1?' active':'');
-  document.getElementById('atab2').className = 'tab'+(n===2?' active':'');
-  document.getElementById('atab1').style.borderColor = n===1?'var(--gold-border)':'var(--card-border)';
-  document.getElementById('atab2').style.borderColor = n===2?'var(--gold-border)':'var(--card-border)';
-  document.getElementById('admin-reservas-panel').style.display = n===1?'block':'none';
-  document.getElementById('admin-apts-panel').style.display = n===2?'block':'none';
-  if(n===1) renderAdminReservas();
+// ==================== ADMIN ====================
+window.openAdmin = function(){closeUserMenu();document.getElementById('admin-overlay').classList.add('active');adminTab(1);};
+window.closeAdmin = function(){document.getElementById('admin-overlay').classList.remove('active');};
+
+window.adminTab = function(n){
+  document.getElementById('atab1').className='tab'+(n===1?' active':'');
+  document.getElementById('atab2').className='tab'+(n===2?' active':'');
+  document.getElementById('atab3').className='tab'+(n===3?' active':'');
+  document.getElementById('atab1').style.borderColor=n===1?'var(--gold-border)':'var(--card-border)';
+  document.getElementById('atab2').style.borderColor=n===2?'var(--gold-border)':'var(--card-border)';
+  document.getElementById('atab3').style.borderColor=n===3?'var(--gold-border)':'var(--card-border)';
+  document.getElementById('admin-users-panel').style.display=n===1?'block':'none';
+  document.getElementById('admin-reservas-panel').style.display=n===2?'block':'none';
+  document.getElementById('admin-apts-panel').style.display=n===3?'block':'none';
+  if(n===1) adminUserSub(adminUserSubTab);
+  else if(n===2) renderAdminReservas();
   else renderAdminApts();
 };
 
-async function renderAdminReservas() {
-  const el = document.getElementById('admin-reservas-list');
-  el.innerHTML = '<div class="empty-state"><span class="spinner"></span></div>';
-  try {
-    const snap = await getDocs(collection(db,'reservations'));
-    if(snap.empty){ el.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No reservations</div></div>'; return; }
-    el.innerHTML = snap.docs.map(docSnap=>{
-      const r = docSnap.data(); const id = docSnap.id;
-      const d = new Date(r.date+'T12:00:00');
-      const dateStr = d.toLocaleDateString('en-US',{day:'numeric',month:'short'});
-      const slotObj = SLOTS.find(s=>s.v===r.slot);
-      return `<div class="admin-row">
-        <div class="admin-row-info">
-          <div class="admin-row-name">${r.name} · Apt ${r.apt}</div>
-          <div class="admin-row-sub">${r.courtName} · ${dateStr} · ${slotObj?slotObj.t:''}</div>
+window.adminUserSub = function(n){
+  adminUserSubTab=n;
+  document.getElementById('usub1').className='tab'+(n===1?' active':'');
+  document.getElementById('usub2').className='tab'+(n===2?' active':'');
+  document.getElementById('usub1').style.borderColor=n===1?'var(--gold-border)':'var(--card-border)';
+  document.getElementById('usub2').style.borderColor=n===2?'var(--gold-border)':'var(--card-border)';
+  renderAdminUsers(n===1?'pending':'approved');
+};
+
+async function renderAdminUsers(status){
+  const el=document.getElementById('admin-users-list');
+  el.innerHTML='<div class="empty-state"><span class="spinner"></span></div>';
+  try{
+    const snap=await getDocs(query(collection(db,'users'),where('status','==',status)));
+    if(snap.empty){el.innerHTML=`<div class="empty-state"><div class="empty-icon">👤</div><div class="empty-text">${status==='pending'?'No pending registrations':'No approved users'}</div></div>`;return;}
+    el.innerHTML=snap.docs.map(docSnap=>{
+      const u=docSnap.data();
+      return `<div class="admin-row" style="flex-wrap:wrap;">
+        <div class="admin-row-info" style="min-width:0;">
+          <div class="admin-row-name">${u.name}</div>
+          <div class="admin-row-sub">Apt ${u.apartment} · ${u.email}</div>
+          <div class="admin-row-sub">📱 ${u.whatsapp}</div>
         </div>
-        <button class="delete-mini" onclick="adminDeleteReserva('${id}')">×</button>
+        <div style="display:flex;gap:4px;flex-shrink:0;">
+          ${status==='pending'?`<button class="approve-mini" onclick="approveUser('${docSnap.id}')">✓</button>`:''} 
+          <button class="delete-mini" onclick="rejectUser('${docSnap.id}')">${status==='pending'?'✕':'Revoke'}</button>
+        </div>
       </div>`;
     }).join('');
-  } catch(e){ el.innerHTML='<div class="empty-state"><div class="empty-text">Error</div></div>'; }
+  }catch(e){el.innerHTML='<div class="empty-state"><div class="empty-text">Error</div></div>';}
 }
 
-window.adminDeleteReserva = async function(id) {
-  try {
-    await deleteDoc(doc(db,'reservations',id));
-    showToast('Reservation deleted');
-    renderAdminReservas();
-  } catch(e){ showToast('Error'); }
-};
+window.approveUser = async function(userId){try{await updateDoc(doc(db,'users',userId),{status:'approved'});showToast('User approved');adminUserSub(adminUserSubTab);}catch(e){showToast('Error');}};
+window.rejectUser = async function(userId){try{await updateDoc(doc(db,'users',userId),{status:'rejected'});showToast('User rejected');adminUserSub(adminUserSubTab);}catch(e){showToast('Error');}};
 
-async function renderAdminApts() {
-  const el = document.getElementById('admin-apts-list');
-  el.innerHTML = '<div class="empty-state"><span class="spinner"></span></div>';
-  try {
-    const snap = await getDocs(collection(db,'apartments'));
-    if(snap.empty){ el.innerHTML='<div class="empty-state"><div class="empty-icon">🏢</div><div class="empty-text">No apartments</div></div>'; return; }
-    el.innerHTML = snap.docs.map(docSnap=>`
-      <div class="admin-row">
-        <div class="admin-row-info"><div class="admin-row-name">Apartment ${docSnap.id}</div></div>
-        <button class="delete-mini" onclick="removeApt('${docSnap.id}')">×</button>
-      </div>`).join('');
-  } catch(e){ el.innerHTML='<div class="empty-state"><div class="empty-text">Error</div></div>'; }
+async function renderAdminReservas(){
+  const el=document.getElementById('admin-reservas-list');
+  el.innerHTML='<div class="empty-state"><span class="spinner"></span></div>';
+  try{
+    const snap=await getDocs(collection(db,'reservations'));
+    if(snap.empty){el.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No reservations</div></div>';return;}
+    const sorted=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.date.localeCompare(b.date));
+    el.innerHTML=sorted.map(r=>{
+      const d=new Date(r.date+'T12:00:00');const dateStr=d.toLocaleDateString('en-US',{day:'numeric',month:'short'});
+      const slotObj=SLOTS.find(s=>s.v===r.slot);
+      return `<div class="admin-row">
+        <div class="admin-row-info"><div class="admin-row-name">${r.name} · Apt ${r.apt}</div><div class="admin-row-sub">${r.courtName} · ${dateStr} · ${slotObj?slotObj.t:''}</div></div>
+        <button class="delete-mini" onclick="adminDeleteReserva('${r.id}')">×</button>
+      </div>`;
+    }).join('');
+  }catch(e){el.innerHTML='<div class="empty-state"><div class="empty-text">Error</div></div>';}
 }
+window.adminDeleteReserva = async function(id){try{await deleteDoc(doc(db,'reservations',id));showToast('Deleted');renderAdminReservas();}catch(e){showToast('Error');}};
 
-window.addApt = async function() {
-  const val = document.getElementById('new-apt-input').value.trim().toUpperCase();
-  if(!val) return;
-  try {
-    await setDoc(doc(db,'apartments',val),{createdAt:new Date().toISOString()});
-    document.getElementById('new-apt-input').value = '';
-    showToast('Apartment added');
-    renderAdminApts();
-  } catch(e){ showToast('Error adding'); }
-};
+async function renderAdminApts(){
+  const el=document.getElementById('admin-apts-list');
+  el.innerHTML='<div class="empty-state"><span class="spinner"></span></div>';
+  try{
+    const snap=await getDocs(collection(db,'apartments'));
+    if(snap.empty){el.innerHTML='<div class="empty-state"><div class="empty-icon">🏢</div><div class="empty-text">No apartments</div></div>';return;}
+    el.innerHTML=snap.docs.map(docSnap=>`<div class="admin-row"><div class="admin-row-info"><div class="admin-row-name">Apartment ${docSnap.id}</div></div><button class="delete-mini" onclick="removeApt('${docSnap.id}')">×</button></div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty-state"><div class="empty-text">Error</div></div>';}
+}
+window.addApt = async function(){const val=document.getElementById('new-apt-input').value.trim().toUpperCase();if(!val)return;try{await setDoc(doc(db,'apartments',val),{createdAt:new Date().toISOString()});document.getElementById('new-apt-input').value='';showToast('Apartment added');renderAdminApts();}catch(e){showToast('Error');}};
+window.removeApt = async function(id){try{await deleteDoc(doc(db,'apartments',id));showToast('Removed');renderAdminApts();}catch(e){showToast('Error');}};
 
-window.removeApt = async function(id) {
-  try {
-    await deleteDoc(doc(db,'apartments',id));
-    showToast('Apartment removed');
-    renderAdminApts();
-  } catch(e){ showToast('Error'); }
-};
-
-window.goHome = function() {
+window.goHome = function(){
   resetFlow();
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelector('.tab').classList.add('active');
+  document.querySelectorAll('#main-app .header .tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('main-tab-reserve').classList.add('active');
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-reservar').classList.add('active');
   window.scrollTo(0,0);
 };
 
-hideLoader();
+// ==================== INIT ====================
+checkSession();
+applyLang();
 </script>
 
 <script>
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  });
-}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 </script>
 </body>
 </html>
