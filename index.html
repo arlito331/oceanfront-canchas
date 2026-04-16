@@ -634,7 +634,7 @@ const i18n = {
     err_no_account:'No account found with that email.',err_wrong_pass:'Incorrect password.',
     err_login:'Error signing in. Please try again.',err_wrong_admin:'Wrong password',
     err_slot_taken:'This slot was just booked by someone else.',
-    err_already_booked:'You already have a reservation on this date for this court.',
+    err_already_booked:'You already have a reservation on this date.',
     err_save:'Error saving. Please try again.',confirm_cancel:'Reservation cancelled',
     err_cancel:'Error cancelling',loading_text:'Loading...',active:'Active',
     days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
@@ -665,7 +665,7 @@ const i18n = {
     err_no_account:'No se encontró una cuenta con ese correo.',err_wrong_pass:'Contraseña incorrecta.',
     err_login:'Error al iniciar sesión. Intenta de nuevo.',err_wrong_admin:'Contraseña incorrecta',
     err_slot_taken:'Este horario acaba de ser reservado.',
-    err_already_booked:'Ya tienes una reserva en esta fecha para esta cancha.',
+    err_already_booked:'Ya tienes una reserva en esta fecha.',
     err_save:'Error al guardar. Intenta de nuevo.',confirm_cancel:'Reserva cancelada',
     err_cancel:'Error al cancelar',loading_text:'Cargando...',active:'Activa',
     days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
@@ -877,7 +877,7 @@ window.confirmReserva = async function(){
     const q2=query(collection(db,'reservations'),where('date','==',state.date),where('court','==',state.court),where('slot','==',state.slot.v));
     const check=await getDocs(q2);
     if(!check.empty){showToast(T('err_slot_taken'));setLoading(btn,false,T('confirm_btn'));buildSlots();return;}
-    const q3=query(collection(db,'reservations'),where('date','==',state.date),where('userId','==',currentUser.id),where('court','==',state.court));
+    const q3=query(collection(db,'reservations'),where('date','==',state.date),where('userId','==',currentUser.id));
     const myCheck=await getDocs(q3);
     if(!myCheck.empty){showToast(T('err_already_booked'));setLoading(btn,false,T('confirm_btn'));return;}
     const courtName=state.court==='grande'?'Cancha Grande':'Cancha Chica';
